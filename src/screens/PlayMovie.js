@@ -22,7 +22,7 @@ import ImageSliderComponent from '../components/ImageSlider';
 
 const {height, width} = Dimensions.get('window');
 
-const Whishlist = (props) => {
+const PlayMovie = (props) => {
   const isFocused = useIsFocused();
 
   useEffect(() => {}, [props, isFocused]);
@@ -80,7 +80,18 @@ const Whishlist = (props) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={{color: 'white'}}>My List</Text>
+      <View style={styles.formContent}>
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.inputs}
+            placeholder="Search PlayMovie"
+            underlineColorAndroid="transparent"
+            onChangeText={(name_address) => console.log(name_address)}
+          />
+        </View>
+      </View>
+
+      <Text style={{color: 'white'}}>Top Search PlayMovie</Text>
 
       <View style={{flex: 1}}>
         <FlatList
@@ -143,4 +154,4 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
   },
 });
-export default Whishlist;
+export default PlayMovie;

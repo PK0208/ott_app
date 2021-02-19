@@ -9,20 +9,19 @@ import {
   TouchableOpacity,
   SafeAreaView,
   Text,
+  ImageBackground,
   FlatList,
 } from 'react-native';
-import Appbar from '../components/Appbar';
-//import ImageSlider from '../components/ImageSlider';
+
 import {useIsFocused} from '@react-navigation/native';
 import axios from 'axios';
 import {Card, CardItem, Body} from 'native-base';
 import StickyHeaderFooterScrollView from 'react-native-sticky-header-footer-scroll-view';
 import FeatherIcon from 'react-native-vector-icons/FontAwesome';
-import ImageSliderComponent from '../components/ImageSlider';
 
 const {height, width} = Dimensions.get('window');
 
-const Whishlist = (props) => {
+const ActionAdventureMovies = (props) => {
   const isFocused = useIsFocused();
 
   useEffect(() => {}, [props, isFocused]);
@@ -80,7 +79,26 @@ const Whishlist = (props) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={{color: 'white'}}>My List</Text>
+      <View style={styles.formContent}>
+        <ImageBackground
+          style={{flex: 1}}
+          source={{
+            uri:
+              'https://content1.jdmagicbox.com/movies/mumbai_10725989252019_06_14_07_12_17_220.jpg?fit=around|210:308&crop=210:308;*,*',
+          }}
+          blurRadius={1}>
+          <Text
+            style={{
+              color: '#FFFFFF',
+              textAlign: 'center',
+              marginTop: '25%',
+              fontFamily: 'MuktaMalar-SemiBold',
+              fontSize: 23,
+            }}>
+            Action and Adventure Movies
+          </Text>
+        </ImageBackground>
+      </View>
 
       <View style={{flex: 1}}>
         <FlatList
@@ -105,6 +123,8 @@ const styles = StyleSheet.create({
   formContent: {
     flexDirection: 'row',
     marginTop: 10,
+    width: '100%',
+    height: '50%',
   },
   inputContainer: {
     borderBottomColor: '#F5FCFF',
@@ -143,4 +163,4 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
   },
 });
-export default Whishlist;
+export default ActionAdventureMovies;

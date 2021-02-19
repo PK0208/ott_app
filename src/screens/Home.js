@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   SafeAreaView,
   Text,
+  ImageBackground,
 } from 'react-native';
 import Appbar from '../components/Appbar';
 //import ImageSlider from '../components/ImageSlider';
@@ -102,6 +103,114 @@ const Home = (props) => {
     );
   };
 
+  const NavigateToGenres = (name) => {
+    if (name == 'Action and adventure') {
+      console.log('Navigating to ', name);
+      props.navigation.navigate('ActionAdventure');
+    } else if (name == 'Comedy') {
+      console.log('Navigating to ', name);
+      props.navigation.navigate('ComedyMovies');
+    } else if (name == 'Drama') {
+      console.log('Navigating to ', name);
+      props.navigation.navigate('DramaMovies');
+    } else if (name == 'Crime') {
+      console.log('Navigating to ', name);
+      props.navigation.navigate('CrimeMovies');
+    } else if (name == 'Animated') {
+      console.log('Navigating to ', name);
+      props.navigation.navigate('RomanceMovies');
+    } else if (name == 'Horror') {
+      console.log('Navigating to ', name);
+      props.navigation.navigate('HorrorMovies');
+    } else if (name == 'Romance') {
+      console.log('Navigating to ', name);
+      props.navigation.navigate('RomanceMovies');
+    }
+  };
+
+  const GenresRow = () => {
+    const slidesGeners = [
+      {
+        title: '1 ',
+        name: 'Action and adventure',
+        uri:
+          'https://content1.jdmagicbox.com/movies/mumbai_10725989252019_06_14_07_12_17_220.jpg?fit=around|210:308&crop=210:308;*,*',
+      },
+      {
+        title: '2 ',
+        name: 'Comedy',
+        uri:
+          'https://www.teahub.io/photos/full/253-2535453_comedy-film-mr-bean.jpg',
+      },
+      {
+        title: '3 ',
+        name: 'Drama',
+        uri:
+          'https://i.pinimg.com/originals/77/4c/39/774c3958d113be25ee5a40362e99c2d5.jpg',
+      },
+      {
+        title: '4 ',
+        name: 'Crime',
+        uri:
+          'https://www.filmibeat.com/img/220x80x275/popcorn/movie_posters/evaru-20190711164519-18436.jpg',
+      },
+      {
+        title: '11 ',
+        name: 'Animated',
+        uri:
+          'https://cdn.cdnparenting.com/articles/2019/02/03181714/240651844-H.jpg',
+      },
+      {
+        title: '21 ',
+        name: 'Romance',
+        uri:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRG6fRceGxkHLHTEJWsNC1GI205O2vjNOhp0Q&usqp=CAU',
+      },
+      {
+        title: '31 ',
+        name: 'Horror',
+        uri:
+          'https://qqcdnpictest.mxplay.com/pic/484f535d77542bca63e21efb896f4cd6/en/2x3/320x480/0b192c87e58113035031e044bfec3300_1280x1920.webp',
+      },
+    ];
+    return (
+      <View style={{flex: 1, alignItems: 'stretch', justifyContent: 'center'}}>
+        <View
+          style={{
+            flexDirection: 'row',
+            width: '100%',
+            backgroundColor: '#0D1F33',
+          }}>
+          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+            {slidesGeners.map((item, key) => (
+              <TouchableOpacity onPress={() => NavigateToGenres(item.name)}>
+                <View style={styles.genreCard}>
+                  <ImageBackground
+                    style={{flex: 1, borderRadius: 24}}
+                    source={{
+                      uri: item.uri,
+                    }}
+                    blurRadius={1}>
+                    <Text
+                      style={{
+                        color: '#FFFFFF',
+                        textAlign: 'center',
+                        marginTop: '25%',
+                        fontFamily: 'MuktaMalar-SemiBold',
+                        fontSize: 19,
+                      }}>
+                      {item.name}
+                    </Text>
+                  </ImageBackground>
+                </View>
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+        </View>
+      </View>
+    );
+  };
+
   return (
     /*  <View style={{height: '100%', backgroundColor: '#0D1F33'}}>
       <ImageSliderComponent />
@@ -154,7 +263,7 @@ const Home = (props) => {
             }}>
             Movie Genres
           </Text>
-          <SingleRow />
+          <GenresRow />
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -172,6 +281,15 @@ const styles = StyleSheet.create({
     //marginLeft: 0,
     //marginRight: 0,
     //marginTop: 0,
+  },
+  genreCard: {
+    width: width * 0.41066666666,
+    height: height * 0.17203219315,
+    borderWidth: 1,
+    marginLeft: 11,
+    borderRadius: 24,
+    alignItems: 'stretch',
+    justifyContent: 'center',
   },
 });
 export default Home;

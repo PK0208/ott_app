@@ -10,19 +10,18 @@ import {
   SafeAreaView,
   Text,
   FlatList,
+  ImageBackground,
 } from 'react-native';
-import Appbar from '../components/Appbar';
-//import ImageSlider from '../components/ImageSlider';
+
 import {useIsFocused} from '@react-navigation/native';
 import axios from 'axios';
 import {Card, CardItem, Body} from 'native-base';
 import StickyHeaderFooterScrollView from 'react-native-sticky-header-footer-scroll-view';
 import FeatherIcon from 'react-native-vector-icons/FontAwesome';
-import ImageSliderComponent from '../components/ImageSlider';
 
 const {height, width} = Dimensions.get('window');
 
-const Whishlist = (props) => {
+const AnimatedMovies = (props) => {
   const isFocused = useIsFocused();
 
   useEffect(() => {}, [props, isFocused]);
@@ -80,7 +79,26 @@ const Whishlist = (props) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={{color: 'white'}}>My List</Text>
+      <View style={styles.formContent}>
+        <ImageBackground
+          style={{flex: 1}}
+          source={{
+            uri:
+              'https://cdn.cdnparenting.com/articles/2019/02/03181714/240651844-H.jpg',
+          }}
+          blurRadius={1}>
+          <Text
+            style={{
+              color: '#FFFFFF',
+              textAlign: 'center',
+              marginTop: '25%',
+              fontFamily: 'MuktaMalar-SemiBold',
+              fontSize: 23,
+            }}>
+            Animated Movies
+          </Text>
+        </ImageBackground>
+      </View>
 
       <View style={{flex: 1}}>
         <FlatList
@@ -143,4 +161,4 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
   },
 });
-export default Whishlist;
+export default AnimatedMovies;
