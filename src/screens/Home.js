@@ -32,42 +32,41 @@ const Home = (props) => {
       {
         title: '1 ',
         uri:
-          'http://www.teluguone.com/photos/uploads/Nishabdham-Release-Date-Pos.jpg',
+          'https://content1.jdmagicbox.com/movies/mumbai_10725989252019_06_14_07_12_17_220.jpg?fit=around|210:308&crop=210:308;*,*',
       },
       {
         title: '2 ',
         uri:
-          'http://www.teluguone.com/photos/uploads/Sanjay-Dutt-KGF-Poster.jpg',
+          'https://www.teahub.io/photos/full/253-2535453_comedy-film-mr-bean.jpg',
       },
       {
         title: '3 ',
         uri:
-          'http://www.teluguone.com/photos/uploads/Gang-Leader-Teaser-Announce.jpg',
+          'https://i.pinimg.com/originals/77/4c/39/774c3958d113be25ee5a40362e99c2d5.jpg',
       },
       {
         title: '4 ',
         uri:
-          'http://www.teluguone.com/photos/uploads/George-Reddy-Movie-First-Lo.jpg',
+          'https://www.filmibeat.com/img/220x80x275/popcorn/movie_posters/evaru-20190711164519-18436.jpg',
       },
       {
         title: '11 ',
-        uri:
-          'http://www.teluguone.com/photos/uploads/Nishabdham-Release-Date-Pos.jpg',
+        uri: 'https://www.yetstar.com/wp-content/uploads/2020/06/download.jpg',
       },
       {
         title: '21 ',
         uri:
-          'http://www.teluguone.com/photos/uploads/Sanjay-Dutt-KGF-Poster.jpg',
+          'https://occ-0-2794-2219.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABao9TMw58bSJyX0HpbyhY5gizoMfnwLMvGEoO6IfZvHjup0AcSIDaiEsWWwm6P_u6fHmVyL1eaDXasAnNgeBxY0C-ADjB9ze-S5dzDFbEHkC8vFWNmlKsFCWkmvy.jpg',
       },
       {
         title: '31 ',
         uri:
-          'http://www.teluguone.com/photos/uploads/Gang-Leader-Teaser-Announce.jpg',
+          'https://mk0timesnextw7n7qiu0.kinstacdn.com/wp-content/uploads/2020/04/Loser-web-series-new.jpg',
       },
       {
         title: '41 ',
         uri:
-          'http://www.teluguone.com/photos/uploads/George-Reddy-Movie-First-Lo.jpg',
+          'https://media.gqindia.com/wp-content/uploads/2020/05/top-image-15.jpg',
       },
     ];
     return (
@@ -81,16 +80,24 @@ const Home = (props) => {
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             {slides.map((item, key) => (
               <View style={{margin: 5}}>
-                <Image
-                  source={{
-                    uri: item.uri,
-                  }}
-                  style={{
-                    width: width * 0.42933333333,
-                    height: 90,
-                    margin: 5,
-                  }}
-                />
+                <TouchableOpacity
+                  onPress={() =>
+                    props.navigation.navigate('MovieByName', {
+                      name: item.name,
+                      image: item.uri,
+                    })
+                  }>
+                  <Image
+                    source={{
+                      uri: item.uri,
+                    }}
+                    style={{
+                      width: width * 0.42933333333,
+                      height: 90,
+                      margin: 5,
+                    }}
+                  />
+                </TouchableOpacity>
               </View>
             ))}
           </ScrollView>
@@ -114,7 +121,7 @@ const Home = (props) => {
       props.navigation.navigate('CrimeMovies');
     } else if (name == 'Animated') {
       console.log('Navigating to ', name);
-      props.navigation.navigate('RomanceMovies');
+      props.navigation.navigate('AnimatedMovies');
     } else if (name == 'Horror') {
       console.log('Navigating to ', name);
       props.navigation.navigate('HorrorMovies');
@@ -214,7 +221,7 @@ const Home = (props) => {
     </View> */
 
     <SafeAreaView style={styles.container}>
-      {/* <ImageSliderComponent /> */}
+      <ImageSliderComponent />
       <ScrollView>
         <View style={{marginTop: 25, backgroundColor: '#0D1F33'}}>
           <Text

@@ -35,21 +35,24 @@ const BottomTabNavigator = () => {
         activeTintColor: '#2F7C6E',
         inactiveTintColor: '#FFFFFF',
         activeBackgroundColor: '#FFFFFF',
-        /* tabStyle: {
-          borderTopLeftRadius: 25,
-          borderTopRightRadius: 25,
-          borderTopLeftColor: '#0D1F33',
-          borderTopRightColor: '#0D1F33',
-          tabBarBackground: '#0D1F33',
-        }, */
+        tabStyle: {
+          //borderTopLeftRadius: 25,
+          //borderTopRightRadius: 25,
+          //borderTopLeftColor: '#0D1F33',
+          //borderTopRightColor: '#0D1F33',
+          //tabBarBackground: '#0D1F33',
+          //borderColor: '#0D1F33',
+          //postion: 'absolute',
+        },
       }}
       appearence={{
-        //borderTopLeftRadius: 25,
-        //borderTopRightRadius: 25,
+        borderTopLeftRadius: 25,
+        borderTopRightRadius: 25,
         tabBarBackground: '#121A23',
         //floating: true,
       }}
-      style={{position: 'absolute'}}>
+      //style={{position: 'absolute'}}
+    >
       <Tabs.Screen
         name="Home"
         component={MainStackNavigator}

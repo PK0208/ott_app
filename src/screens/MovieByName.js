@@ -122,7 +122,7 @@ const MovieByName = (props) => {
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.buttonContainer1, styles.sendButton]}
-            onPress={() => console.log('login')}>
+            onPress={() => props.navigation.navigate('Wishlist')}>
             <EntypoIcon
               name="plus"
               color="#000000"
