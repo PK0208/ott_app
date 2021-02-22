@@ -103,7 +103,7 @@ const SignUp = (props) => {
 
         <TouchableHighlight
           style={[styles.buttonContainer, styles.sendButton]}
-          onPress={() => console.log('Sign Up Pressed')}>
+          onPress={() => props.navigation.navigate('Home')}>
           <Text style={styles.buttonText}>Submit</Text>
         </TouchableHighlight>
       </View>
@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 20,
     width: 100,
-    borderRadius: 30,
+    borderRadius: 21,
     borderColor: '#FFFFFF',
     borderWidth: 1,
     alignSelf: 'center',

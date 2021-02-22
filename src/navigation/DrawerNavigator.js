@@ -19,6 +19,8 @@ import TabNavigator from './TabNavigator';
 //import Logout from '../screens/LogOut';
 //import Profile from '../screens/Profile';
 import Home from '../screens/Home';
+import Login from '../screens/Login';
+import SignUp from '../screens/SignUp';
 
 const Drawer = createDrawerNavigator();
 const DrawerNavigator = () => {
@@ -27,6 +29,8 @@ const DrawerNavigator = () => {
       screenOptions={{headerShown: false}}
       drawerContent={(props) => <DrawerContent {...props} />}>
       <Drawer.Screen name="Home" component={TabNavigator} />
+      {/* <Drawer.Screen name="SignUp" component={TabNavigator} />
+      <Drawer.Screen name="Home" component={TabNavigator} /> */}
       {/* <Drawer.Screen name="Home" component={Home} /> */}
       {/* <Drawer.Screen name="Billing" component={Billing} /> */}
       {/* <Drawer.Screen name="Contact" component={Contact} /> */}

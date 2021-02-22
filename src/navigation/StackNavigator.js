@@ -15,6 +15,9 @@ import DramaMovies from '../screens/MoviesByGeneres/DramaMovies';
 import HorrorMovies from '../screens/MoviesByGeneres/HorrorMovies';
 import RomanceMovies from '../screens/MoviesByGeneres/RomanceMovies';
 
+import Login from '../screens/Login';
+import SignUp from '../screens/SignUp';
+
 const Stack = createStackNavigator();
 
 const screenOptionStyle = {
@@ -26,12 +29,26 @@ const screenOptionStyle = {
   headerShown: false,
 };
 
+const AuStackNavigator = ({navigation, route}) => {
+  navigation.setOptions({
+    tabBarVisible: route.state ? (route.state.index > 0 ? false : false) : null,
+  });
+  return (
+    <Stack.Navigator screenOptions={screenOptionStyle}>
+      <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="SignUp" component={SignUp} />
+    </Stack.Navigator>
+  );
+};
+
 const MainStackNavigator = ({navigation, route}) => {
   navigation.setOptions({
     tabBarVisible: route.state ? (route.state.index > 0 ? true : true) : null,
   });
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
+      {/* <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="SignUp" component={SignUp} /> */}
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="ActionAdventure" component={ActionAdventure} />
       <Stack.Screen name="AnimatedMovies" component={AnimatedMovies} />
@@ -80,6 +97,7 @@ const ProfileStacKNavigator = ({navigation, route}) => {
 };
 
 export {
+  AuStackNavigator,
   MainStackNavigator,
   SearchStacKNavigator,
   WishListStacKNavigator,

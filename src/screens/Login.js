@@ -60,7 +60,7 @@ const Login = (props) => {
 
         <TouchableHighlight
           style={[styles.buttonContainer, styles.sendButton]}
-          onPress={() => console.log('login')}>
+          onPress={() => props.navigation.navigate('Home')}>
           <Text style={styles.buttonText}>Log In</Text>
         </TouchableHighlight>
         <View
@@ -69,18 +69,38 @@ const Login = (props) => {
             alignSelf: 'center',
             alignItems: 'center',
           }}>
-          <Text
-            style={{
-              fontFamily: 'Arial regular',
-              color: '#B8B5B5',
-              fontSize: 15,
-            }}>
-            Forgot password ?
-          </Text>
-          <Text
-            style={{fontFamily: 'arial-bold', color: '#B8B5B5', fontSize: 16}}>
-            New to OTT ? Sign up now.
-          </Text>
+          <TouchableOpacity onPress={() => console.log('Forgot Password')}>
+            <Text
+              style={{
+                fontFamily: 'Arial regular',
+                color: '#B8B5B5',
+                fontSize: 15,
+              }}>
+              Forgot password ?
+            </Text>
+          </TouchableOpacity>
+          <View style={{flexDirection: 'row'}}>
+            <Text
+              style={{
+                fontFamily: 'arial-bold',
+                color: '#B8B5B5',
+                fontSize: 16,
+              }}>
+              New to OTT ?
+            </Text>
+            <TouchableOpacity
+              onPress={() => props.navigation.navigate('SignUp')}>
+              <Text
+                style={{
+                  fontFamily: 'arial-bold',
+                  color: '#B8B5B5',
+                  fontSize: 16,
+                  marginLeft: 5,
+                }}>
+                Sign up now.
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </SafeAreaView>
@@ -118,8 +138,8 @@ const styles = StyleSheet.create({
     height: 45,
     marginBottom: 20,
     flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
+    //alignItems: 'center',
+    //justifyContent: 'center',
     alignSelf: 'center',
     shadowColor: '#808080',
     shadowOffset: {
@@ -143,7 +163,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 20,
     width: 100,
-    borderRadius: 30,
+    borderRadius: 21,
     borderColor: '#FFFFFF',
     borderWidth: 1,
     alignSelf: 'center',

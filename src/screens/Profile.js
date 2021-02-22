@@ -56,7 +56,10 @@ const Profile = (props) => {
             <Text style={styles.rightText}>Change Name</Text>
             <Text style={styles.rightText}>Change Email</Text>
             <Text style={styles.rightText}>Change Phone No.</Text>
-            <Text style={styles.rightText}>Log out </Text>
+            <TouchableOpacity
+              onPress={() => props.navigation.navigate('Login')}>
+              <Text style={styles.rightText}>Log out </Text>
+            </TouchableOpacity>
           </View>
 
           <View style={{flexDirection: 'column', margin: 15}}>
@@ -108,18 +111,20 @@ const styles = StyleSheet.create({
   rightText: {
     fontSize: 18,
     margin: 5,
-    fontFamily: 'HelveticaNeue-Regular',
+    fontFamily: 'HelveticaNeue Regular',
     color: '#EBE8E8',
+    //fontWeight: '700',
   },
   leftText: {
     fontSize: 18,
     margin: 5,
-    fontFamily: 'HelveticaNeue-Regular',
+    fontFamily: 'HelveticaNeue Regular',
     color: '#EBE8E8',
+    //fontWeight: '700',
   },
   bottomText: {
     fontSize: 14,
-    fontFamily: 'HelveticaNeue-Regular',
+    fontFamily: 'HelveticaNeue Regular',
     color: '#B9B8B8',
   },
 });

@@ -80,7 +80,16 @@ const Whishlist = (props) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={{color: 'white'}}>My List</Text>
+      <Text
+        style={{
+          color: 'white',
+          textAlign: 'center',
+          fontFamily: 'MuktaMalar-Bold',
+          fontSize: 23,
+          marginTop: 42,
+        }}>
+        My List
+      </Text>
 
       <View style={{flex: 1}}>
         <FlatList
@@ -124,13 +133,15 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   card: {
-    width: width,
+    width: width * 0.88850666666,
     //height: 150,
     flexDirection: 'row',
     padding: 10,
     justifyContent: 'center',
     alignItems: 'center',
+    alignSelf: 'center',
     //borderWidth: 1,
+    //marginLeft: 21,
   },
   cardImage: {
     height: 70,
@@ -138,9 +149,11 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
   title: {
-    fontSize: 18,
+    fontSize: 14,
     flex: 1,
     color: '#FFFFFF',
+    fontFamily: 'arial-bold',
+    marginLeft: 7,
   },
 });
 export default Whishlist;

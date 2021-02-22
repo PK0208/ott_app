@@ -12,6 +12,7 @@ import {
 //import Login from '../screens/Authentication/LoginScreen';
 //import SignUp from '../screens/Authentication/SignUpScreen';
 //import ForgotPassword from '../screens/Authentication/ForgotPassword';
+import TabNavigator from './TabNavigator';
 
 import Login from '../screens/Login';
 import SignUp from '../screens/SignUp';
@@ -23,8 +24,9 @@ const AuthStackNavigator = () => {
     <>
       <StatusBar barStyle="dark-content" />
       <AuthStack.Navigator mode={'model'} screenOptions={{headerShown: false}}>
-        {/* <AuthStack.Screen name={'Login'} component={Login} /> */}
+        <AuthStack.Screen name={'Login'} component={Login} />
         <AuthStack.Screen name={'SignUp'} component={SignUp} />
+        <AuthStack.Screen name={'Home'} component={TabNavigator} />
         {/* <AuthStack.Screen name={'Login'} component={Login} />
         <AuthStack.Screen name={'SignUp'} component={SignUp} />
         <AuthStack.Screen name={'SignUp'} component={SignUp} />

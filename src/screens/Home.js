@@ -71,34 +71,30 @@ const Home = (props) => {
       },
     ];
     return (
-      <View>
-        <Card containerStyle={styles.cardStyle}>
-          <View
-            style={{
-              flexDirection: 'row',
-              width: '100%',
-              backgroundColor: '#0D1F33',
-            }}>
-            <ScrollView
-              horizontal={true}
-              showsHorizontalScrollIndicator={false}>
-              {slides.map((item, key) => (
-                <View style={{margin: 5}}>
-                  <Image
-                    source={{
-                      uri: item.uri,
-                    }}
-                    style={{
-                      width: width * 0.42933333333,
-                      height: 90,
-                      margin: 5,
-                    }}
-                  />
-                </View>
-              ))}
-            </ScrollView>
-          </View>
-        </Card>
+      <View style={{backgroundColor: '#0D1F33'}}>
+        <View
+          style={{
+            flexDirection: 'row',
+            width: '100%',
+            backgroundColor: '#0D1F33',
+          }}>
+          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+            {slides.map((item, key) => (
+              <View style={{margin: 5}}>
+                <Image
+                  source={{
+                    uri: item.uri,
+                  }}
+                  style={{
+                    width: width * 0.42933333333,
+                    height: 90,
+                    margin: 5,
+                  }}
+                />
+              </View>
+            ))}
+          </ScrollView>
+        </View>
       </View>
     );
   };
@@ -187,6 +183,7 @@ const Home = (props) => {
                 <View style={styles.genreCard}>
                   <ImageBackground
                     style={{flex: 1, borderRadius: 24}}
+                    imageStyle={{borderRadius: 24}}
                     source={{
                       uri: item.uri,
                     }}
@@ -285,9 +282,9 @@ const styles = StyleSheet.create({
   genreCard: {
     width: width * 0.41066666666,
     height: height * 0.17203219315,
-    borderWidth: 1,
+    //borderWidth: 1,
     marginLeft: 11,
-    borderRadius: 24,
+    //borderRadius: 24,
     alignItems: 'stretch',
     justifyContent: 'center',
   },

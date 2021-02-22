@@ -28,7 +28,8 @@ const StartScreen = () => {
       </NavigationContainer> */}
 
       <NavigationContainer>
-        <DrawerNavigator />
+        {/* <DrawerNavigator /> */}
+        <AuthStackNavigator />
         {/* {id == null ? <AuthStackNavigator /> : <DrawerNavigator />} */}
         {/* {id == null ? <AuthStackNavigator /> : <DrawerNavigator />} */}
       </NavigationContainer>
