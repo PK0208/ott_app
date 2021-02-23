@@ -65,7 +65,10 @@ const Whishlist = (props) => {
       <TouchableOpacity
         style={[styles.card]}
         onPress={() => {
-          console.log(item);
+          props.navigation.navigate('MovieByName', {
+            name: item.name,
+            image: item.imageUri,
+          });
         }}>
         <Image
           style={styles.cardImage}

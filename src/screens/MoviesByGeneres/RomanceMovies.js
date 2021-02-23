@@ -100,7 +100,7 @@ const RomanceMovies = (props) => {
         </ImageBackground>
       </View>
 
-      <View style={{flex: 1}}>
+      {/* <View style={{flex: 1}}>
         <FlatList
           nestedScrollEnabled={true}
           removeClippedSubviews={true}
@@ -109,6 +109,34 @@ const RomanceMovies = (props) => {
           renderItem={listOfMovies}
           keyExtractor={(item, index) => index.toString()}
           //style={{marginHorizontal: 5}}
+        />
+      </View> */}
+      <View style={{flex: 1, flexDirection: 'row'}}>
+        <Image
+          style={{
+            width: width * 0.456,
+            height: height * 0.13793103448,
+            backgroundColor: 'powderblue',
+            margin: 5,
+          }}
+          source={{
+            uri:
+              'https://content1.jdmagicbox.com/movies/mumbai_10725989252019_06_14_07_12_17_220.jpg?fit=around|210:308&crop=210:308;*,*',
+          }}
+          resizeMode="cover"
+        />
+        <Image
+          style={{
+            width: width * 0.456,
+            height: height * 0.13793103448,
+            backgroundColor: 'powderblue',
+            margin: 5,
+          }}
+          source={{
+            uri:
+              'https://content1.jdmagicbox.com/movies/mumbai_10725989252019_06_14_07_12_17_220.jpg?fit=around|210:308&crop=210:308;*,*',
+          }}
+          resizeMode="cover"
         />
       </View>
     </SafeAreaView>

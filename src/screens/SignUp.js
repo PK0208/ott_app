@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {
+  StatusBar,
   View,
   StyleSheet,
   Dimensions,
@@ -31,6 +32,7 @@ const SignUp = (props) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar barStyle="light-content" />
       <View style={styles.container1}>
         <View style={{alignItems: 'center', marginHorizontal: 30}}>
           <Image

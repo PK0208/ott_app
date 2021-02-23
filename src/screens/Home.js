@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {
+  StatusBar,
   View,
   StyleSheet,
   Dimensions,
@@ -25,7 +26,9 @@ const {height, width} = Dimensions.get('window');
 const Home = (props) => {
   const isFocused = useIsFocused();
 
-  useEffect(() => {}, [props, isFocused]);
+  useEffect(() => {
+    //console.log('Height & Width', height, width);
+  }, [props, isFocused]);
 
   const SingleRow = () => {
     const slides = [
@@ -79,10 +82,89 @@ const Home = (props) => {
           }}>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             {slides.map((item, key) => (
-              <View style={{margin: 5}}>
+              <View>
                 <TouchableOpacity
                   onPress={() =>
                     props.navigation.navigate('MovieByName', {
+                      name: item.name,
+                      image: item.uri,
+                    })
+                  }>
+                  <Image
+                    source={{
+                      uri: item.uri,
+                    }}
+                    style={{
+                      width: width * 0.42933333333,
+                      height: 90,
+                      margin: 5,
+                    }}
+                  />
+                </TouchableOpacity>
+              </View>
+            ))}
+          </ScrollView>
+        </View>
+      </View>
+    );
+  };
+
+  const WebSeries = () => {
+    const slides = [
+      {
+        title: '1 ',
+        uri:
+          'https://content1.jdmagicbox.com/movies/mumbai_10725989252019_06_14_07_12_17_220.jpg?fit=around|210:308&crop=210:308;*,*',
+      },
+      {
+        title: '2 ',
+        uri:
+          'https://www.teahub.io/photos/full/253-2535453_comedy-film-mr-bean.jpg',
+      },
+      {
+        title: '3 ',
+        uri:
+          'https://i.pinimg.com/originals/77/4c/39/774c3958d113be25ee5a40362e99c2d5.jpg',
+      },
+      {
+        title: '4 ',
+        uri:
+          'https://www.filmibeat.com/img/220x80x275/popcorn/movie_posters/evaru-20190711164519-18436.jpg',
+      },
+      {
+        title: '11 ',
+        uri: 'https://www.yetstar.com/wp-content/uploads/2020/06/download.jpg',
+      },
+      {
+        title: '21 ',
+        uri:
+          'https://occ-0-2794-2219.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABao9TMw58bSJyX0HpbyhY5gizoMfnwLMvGEoO6IfZvHjup0AcSIDaiEsWWwm6P_u6fHmVyL1eaDXasAnNgeBxY0C-ADjB9ze-S5dzDFbEHkC8vFWNmlKsFCWkmvy.jpg',
+      },
+      {
+        title: '31 ',
+        uri:
+          'https://mk0timesnextw7n7qiu0.kinstacdn.com/wp-content/uploads/2020/04/Loser-web-series-new.jpg',
+      },
+      {
+        title: '41 ',
+        uri:
+          'https://media.gqindia.com/wp-content/uploads/2020/05/top-image-15.jpg',
+      },
+    ];
+    return (
+      <View style={{backgroundColor: '#0D1F33'}}>
+        <View
+          style={{
+            flexDirection: 'row',
+            width: '100%',
+            backgroundColor: '#0D1F33',
+          }}>
+          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+            {slides.map((item, key) => (
+              <View>
+                <TouchableOpacity
+                  onPress={() =>
+                    props.navigation.navigate('SeriesByName', {
                       name: item.name,
                       image: item.uri,
                     })
@@ -221,16 +303,17 @@ const Home = (props) => {
     </View> */
 
     <SafeAreaView style={styles.container}>
+      <StatusBar barStyle="light-content" />
       <ImageSliderComponent />
       <ScrollView>
-        <View style={{marginTop: 25, backgroundColor: '#0D1F33'}}>
+        <View style={{marginTop: 5, backgroundColor: '#0D1F33'}}>
           <Text
             style={{
               color: '#D2DAE0',
               fontFamily: 'Al Nile',
               fontWeight: 'bold',
               fontSize: 18,
-              margin: 10,
+              margin: 5,
             }}>
             Popular Movies
           </Text>
@@ -241,18 +324,19 @@ const Home = (props) => {
               fontFamily: 'Al Nile',
               fontWeight: 'bold',
               fontSize: 18,
-              margin: 10,
+              margin: 5,
             }}>
             Popular Series
           </Text>
-          <SingleRow />
+          {/* <SingleRow /> */}
+          <WebSeries />
           <Text
             style={{
               color: '#D2DAE0',
               fontFamily: 'Al Nile',
               fontWeight: 'bold',
               fontSize: 18,
-              margin: 10,
+              margin: 5,
             }}>
             Coming Soon
           </Text>
@@ -263,7 +347,7 @@ const Home = (props) => {
               fontFamily: 'Al Nile',
               fontWeight: 'bold',
               fontSize: 18,
-              margin: 10,
+              margin: 5,
             }}>
             Movie Genres
           </Text>
@@ -287,10 +371,15 @@ const styles = StyleSheet.create({
     //marginTop: 0,
   },
   genreCard: {
-    width: width * 0.41066666666,
-    height: height * 0.17203219315,
+    //width: width * 0.41066666666,
+    //height: (height * 5.81286549708) / 4 / 4,
+    height: width * 0.41066666666,
+    width: (height * 5.81286549708) / 4 / 8,
+    //height: 171,
+    //width:154,
     //borderWidth: 1,
-    marginLeft: 11,
+    //marginLeft: 11,
+    margin: 5,
     //borderRadius: 24,
     alignItems: 'stretch',
     justifyContent: 'center',

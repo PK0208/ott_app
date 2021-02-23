@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {
+  StatusBar,
   View,
   StyleSheet,
   Dimensions,
@@ -90,6 +91,7 @@ const Search = (props) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar barStyle="light-content" />
       <View style={styles.formContent}>
         <View style={styles.inputContainer}>
           <TextInput

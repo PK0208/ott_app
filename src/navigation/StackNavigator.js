@@ -6,6 +6,7 @@ import Whishlist from '../screens/Whishlist';
 import Profile from '../screens/Profile';
 import MovieByName from '../screens/MovieByName';
 import PlayMovie from '../screens/PlayMovie';
+import SeriesByName from '../screens/SeriesByName';
 
 import ActionAdventure from '../screens/MoviesByGeneres/ActionAdventureMovies';
 import AnimatedMovies from '../screens/MoviesByGeneres/AnimatedMovies';
@@ -57,6 +58,9 @@ const MainStackNavigator = ({navigation, route}) => {
       <Stack.Screen name="DramaMovies" component={DramaMovies} />
       <Stack.Screen name="HorrorMovies" component={HorrorMovies} />
       <Stack.Screen name="RomanceMovies" component={RomanceMovies} />
+      <Stack.Screen name="MovieByName" component={MovieByName} />
+      <Stack.Screen name="SeriesByName" component={SeriesByName} />
+      <Stack.Screen name="Whishlist" component={Whishlist} />
     </Stack.Navigator>
   );
 };

@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react';
+
 import {
+  StatusBar,
+  Dimensions,
   View,
   StyleSheet,
-  Dimensions,
   ScrollView,
   TextInput,
   Image,
@@ -11,103 +13,115 @@ import {
   Text,
   FlatList,
   TouchableHighlight,
+  ImageBackground,
 } from 'react-native';
-import Appbar from '../components/Appbar';
-//import ImageSlider from '../components/ImageSlider';
-import {useIsFocused} from '@react-navigation/native';
-import axios from 'axios';
-import {Card, CardItem, Body} from 'native-base';
-import StickyHeaderFooterScrollView from 'react-native-sticky-header-footer-scroll-view';
+
 import AntIcon from 'react-native-vector-icons/AntDesign';
 import EntypoIcon from 'react-native-vector-icons/Entypo';
 import FeatherIcon from 'react-native-vector-icons/FontAwesome';
-import ImageSliderComponent from '../components/ImageSlider';
+import {useIsFocused} from '@react-navigation/native';
+
+//import {LinearGradient} from 'expo-linear-gradient';
+
+import styled from 'styled-components/native';
+
+const Container = styled.ScrollView`
+  flex: 1;
+  background-color: #0d1f33;
+`;
+
+const Poster = styled.ImageBackground`
+  width: 100%;
+  height: ${(Dimensions.get('window').height * 81) / 100}px;
+`;
+
+/* const Gradient = styled(LinearGradient)`
+  height: 100%;
+`; */
 
 const {height, width} = Dimensions.get('window');
 
+const dataMovies = [
+  {
+    id: 1,
+    imageUri:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-VwB1KWCwZsTkTCt-1AqLQulVrkjn9Jr96Q&usqp=CAU',
+    name: 'Mirzapur',
+  },
+  {
+    id: 2,
+    imageUri:
+      'https://blogtobollywood.com/wp-content/uploads/2021/01/Telugu-movie-Red.jpg',
+    name: 'Red',
+  },
+  {
+    id: 3,
+    imageUri:
+      'https://i.pinimg.com/originals/e5/7b/5a/e57b5a031e365fb54fded45bbe8bdee0.jpg',
+    name: 'Breathe',
+  },
+  {
+    id: 4,
+    imageUri:
+      'https://image.scoopwhoop.com/w360/s4.scoopwhoop.com/anj2/5dd6457650758d76b6503bb2/bd3f981a-79ea-4c43-a22b-5a73bd92b771.jpg.webp',
+    name: 'Sacred Games',
+  },
+  {
+    id: 5,
+    imageUri:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtc3n-wll3kCg_HrAWQl9FwVK9Y6UKsla7kg&usqp=CAU',
+    name: 'Money Heist',
+  },
+  {
+    id: 5,
+    imageUri:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtc3n-wll3kCg_HrAWQl9FwVK9Y6UKsla7kg&usqp=CAU',
+    name: 'Money Heist',
+  },
+  {
+    id: 5,
+    imageUri:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtc3n-wll3kCg_HrAWQl9FwVK9Y6UKsla7kg&usqp=CAU',
+    name: 'Money Heist',
+  },
+  {
+    id: 5,
+    imageUri:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtc3n-wll3kCg_HrAWQl9FwVK9Y6UKsla7kg&usqp=CAU',
+    name: 'Money Heist',
+  },
+];
+
 const MovieByName = (props) => {
   const isFocused = useIsFocused();
-
+  const [arr, setArr] = useState([dataMovies]);
   useEffect(() => {
-    console.log('User effect props MovieByName', props.route.params);
+    console.log('User effect props MoviesByName', props.route.params);
+    setArr(dataMovies);
   }, [props, isFocused]);
 
-  const dataMovies = [
-    {
-      id: 1,
-      imageUri:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-VwB1KWCwZsTkTCt-1AqLQulVrkjn9Jr96Q&usqp=CAU',
-      name: 'Mirzapur',
-    },
-    {
-      id: 2,
-      imageUri:
-        'https://blogtobollywood.com/wp-content/uploads/2021/01/Telugu-movie-Red.jpg',
-      name: 'Red',
-    },
-    {
-      id: 3,
-      imageUri:
-        'https://i.pinimg.com/originals/e5/7b/5a/e57b5a031e365fb54fded45bbe8bdee0.jpg',
-      name: 'Breathe',
-    },
-    {
-      id: 4,
-      imageUri:
-        'https://image.scoopwhoop.com/w360/s4.scoopwhoop.com/anj2/5dd6457650758d76b6503bb2/bd3f981a-79ea-4c43-a22b-5a73bd92b771.jpg.webp',
-      name: 'Sacred Games',
-    },
-    {
-      id: 5,
-      imageUri:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtc3n-wll3kCg_HrAWQl9FwVK9Y6UKsla7kg&usqp=CAU',
-      name: 'Money Heist',
-    },
-    {
-      id: 5,
-      imageUri:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtc3n-wll3kCg_HrAWQl9FwVK9Y6UKsla7kg&usqp=CAU',
-      name: 'Money Heist',
-    },
-  ];
-
-  const listOfMovies = ({item}) => {
-    return (
-      <TouchableOpacity
-        style={[styles.card]}
-        onPress={() => {
-          console.log(item);
-        }}>
-        <Image
-          style={styles.cardImageN}
-          source={{uri: item.imageUri}}
-          resizeMode="contain"
-        />
-        <Text style={styles.title}>{item.name}</Text>
-        <FeatherIcon
-          name="play"
-          size={22}
-          color="white"
-          onPress={() => console.log('Play Movie')}
-        />
-      </TouchableOpacity>
-    );
-  };
-
   return (
-    <View style={styles.container}>
-      <View style={styles.item1}>
-        <Image
-          style={styles.cardImage}
-          resizeMode="cover"
-          source={{
-            uri: props.route.params.image,
-          }}
-        />
-      </View>
-      <View style={styles.item2}>
+    <>
+      <StatusBar
+        translucent
+        backgroundColor="transparent"
+        barStyle="light-content"
+      />
+      <Container>
+        <Poster source={require('../assests/images/black.jpg')}>
+          {/* <Gradient
+            locations={[0, 0.2, 0.6, 0.93]}
+            colors={[
+              'rgba(0,0,0,0.5)',
+              'rgba(0,0,0,0.0)',
+              'rgba(0,0,0,0.0)',
+              'rgba(0,0,0,1)',
+            ]}>
+            <Header />
+            <Hero />
+          </Gradient> */}
+        </Poster>
         <Text style={styles.text}>2020</Text>
-
         <View style={{flexDirection: 'row'}}>
           <TouchableOpacity
             style={[styles.buttonContainer, styles.sendButton]}
@@ -122,7 +136,7 @@ const MovieByName = (props) => {
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.buttonContainer1, styles.sendButton]}
-            onPress={() => props.navigation.navigate('Wishlist')}>
+            onPress={() => props.navigation.navigate('Whishlist')}>
             <EntypoIcon
               name="plus"
               color="#000000"
@@ -134,46 +148,108 @@ const MovieByName = (props) => {
             </Text>
           </TouchableOpacity>
         </View>
-        <View style={{marginLeft: 23}}>
-          <Text
-            style={{
-              color: '#BEBABA',
-              fontFamily: 'HelveticaNeue Regular',
-              fontSize: 12,
-            }}>
-            Years after a police encounter separates him from his lover, an
-            angry young man goes in a killing spree, with an equally vengeful
-            cop on his heels
-          </Text>
+        <Text
+          style={{
+            color: '#BEBABA',
+            fontFamily: 'HelveticaNeue Regular',
+            fontSize: 12,
+            marginLeft: 23,
+          }}>
+          Years after a police encounter separates him from his lover, an angry
+          young man goes in a killing spree, with an equally vengeful cop on his
+          heels
+        </Text>
 
-          <Text
-            style={{
-              color: '#D2DAE0',
-              fontFamily: 'Al Nile',
-              fontSize: 18,
-              marginVertical: 10,
-            }}>
-            More Episodes
-          </Text>
-        </View>
+        <Text
+          style={{
+            color: 'white',
+            fontFamily: 'Al Nile',
+            fontSize: 18,
+            marginLeft: 23,
+            marginTop: 5,
+          }}>
+          More Movies
+        </Text>
+        {/* <Movies label='Recomendados' item={api} /> */}
+        {/* <Movies label='Top 10' item={api} /> */}
 
-        <View style={{flex: 1}}>
-          <ScrollView>
-            <View style={{flex: 1}}>
-              <FlatList
-                nestedScrollEnabled={true}
-                removeClippedSubviews={true}
-                showsVerticalScrollIndicator={false}
-                data={dataMovies}
-                renderItem={listOfMovies}
-                keyExtractor={(item, index) => index.toString()}
-                //style={{marginHorizontal: 5}}
-              />
-            </View>
-          </ScrollView>
+        <View
+          style={{
+            //flex: 1,
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            alignItems: 'center',
+            alignSelf: 'center',
+          }}>
+          {/* <View style={styles.genreCard}>
+                  <ImageBackground
+                    style={{flex: 1, borderRadius: 24}}
+                    imageStyle={{borderRadius: 24}}
+                    source={{
+                      uri: item.uri,
+                    }}
+                    blurRadius={1}>
+                    <Text
+                      style={{
+                        color: '#FFFFFF',
+                        textAlign: 'center',
+                        marginTop: '25%',
+                        fontFamily: 'MuktaMalar-SemiBold',
+                        fontSize: 19,
+                      }}>
+                      {item.name}
+                    </Text>
+                  </ImageBackground>
+                </View> */}
+          {arr.map((item) => {
+            return (
+              <View style={styles.RectangularCard}>
+                <Image
+                  source={{
+                    uri: item.imageUri,
+                  }}
+                  style={{
+                    //width: width * 0.29866666666,
+                    //height: height * 0.12068965517,
+                    //margin: 5,
+                    height: width * 0.29866666666,
+                    width: height * 0.12068965517,
+                  }}
+                  resizeMode="cover"
+                />
+              </View>
+            );
+          })}
         </View>
-      </View>
-    </View>
+        {/* <View>
+          {arr.map((item) => {
+            return (
+              <View>
+                <TouchableOpacity
+                  style={[styles.card]}
+                  onPress={() => {
+                    console.log(item);
+                  }}>
+                  <Image
+                    style={styles.cardImageN}
+                    source={{uri: item.imageUri}}
+                    resizeMode="contain"
+                  />
+                  <Text style={styles.title}>{item.name}</Text>
+                  <FeatherIcon
+                    name="play"
+                    size={22}
+                    color="white"
+                    onPress={() => console.log('Play Movie')}
+                  />
+                </TouchableOpacity>
+              </View>
+            );
+          })}
+        </View> */}
+      </Container>
+    </>
   );
 };
 
@@ -267,5 +343,19 @@ const styles = StyleSheet.create({
     marginLeft: 7,
     fontFamily: 'arial-bold',
   },
+  RectangularCard: {
+    //width: width * 0.41066666666,
+    //height: (height * 5.81286549708) / 4 / 4,
+    //height: (height * 0.41066666666) / 2,
+    //width: (width * 5.81286549708) / 22,
+    //borderWidth: 1,
+    marginLeft: 11,
+    //borderRadius: 24,
+    //alignItems: 'stretch',
+    //justifyContent: 'center',
+    //alignSelf: 'center',
+    marginTop: 5,
+  },
 });
+
 export default MovieByName;

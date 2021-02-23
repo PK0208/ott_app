@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {
+  StatusBar,
   View,
   StyleSheet,
   Dimensions,
@@ -28,6 +29,7 @@ const Profile = (props) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar barStyle="light-content" />
       <View style={styles.container1}>
         <View style={{alignItems: 'center', marginHorizontal: 30}}>
           <Image
@@ -69,7 +71,13 @@ const Profile = (props) => {
         </View>
       </View>
 
-      <View style={{flexDirection: 'row', marginLeft: '40%', margin: 5}}>
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignSelf: 'center',
+          margin: 5,
+        }}>
         <Text style={styles.bottomText}>Contact us</Text>
         <View
           style={{borderWidth: 1, borderColor: '#707070', margin: 5}}></View>
