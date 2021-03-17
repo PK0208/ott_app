@@ -16,6 +16,8 @@ import DramaMovies from '../screens/MoviesByGeneres/DramaMovies';
 import HorrorMovies from '../screens/MoviesByGeneres/HorrorMovies';
 import RomanceMovies from '../screens/MoviesByGeneres/RomanceMovies';
 
+import Teaser from '../screens/Teaser';
+
 import Login from '../screens/Login';
 import SignUp from '../screens/SignUp';
 
@@ -38,6 +40,7 @@ const AuStackNavigator = ({navigation, route}) => {
     <Stack.Navigator screenOptions={screenOptionStyle}>
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="SignUp" component={SignUp} />
+      <Stack.Screen name="Teaser" component={Teaser} />
     </Stack.Navigator>
   );
 };
@@ -52,6 +55,7 @@ const MainStackNavigator = ({navigation, route}) => {
       <Stack.Screen name="SignUp" component={SignUp} /> */}
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="ActionAdventure" component={ActionAdventure} />
+      <Stack.Screen name="Teaser" component={Teaser} />
       <Stack.Screen name="AnimatedMovies" component={AnimatedMovies} />
       <Stack.Screen name="ComedyMovies" component={ComedyMovies} />
       <Stack.Screen name="CrimeMovies" component={CrimeMovies} />
@@ -74,6 +78,7 @@ const SearchStacKNavigator = ({navigation, route}) => {
       <Stack.Screen name="Search" component={Search} />
       <Stack.Screen name="MovieByName" component={MovieByName} />
       <Stack.Screen name="PlayMovie" component={PlayMovie} />
+      <Stack.Screen name="Teaser" component={Teaser} />
     </Stack.Navigator>
   );
 };
@@ -85,6 +90,7 @@ const WishListStacKNavigator = ({navigation, route}) => {
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
       <Stack.Screen name="Whishlist" component={Whishlist} />
+      <Stack.Screen name="Teaser" component={Teaser} />
     </Stack.Navigator>
   );
 };
@@ -96,6 +102,7 @@ const ProfileStacKNavigator = ({navigation, route}) => {
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
       <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="Teaser" component={Teaser} />
     </Stack.Navigator>
   );
 };

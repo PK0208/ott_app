@@ -37,7 +37,7 @@ const Poster = styled.ImageBackground`
   height: ${(Dimensions.get('window').height * 81) / 100}px;
 `;
 
-const Login = (props) => {
+const Logo = (props) => {
   const isFocused = useIsFocused();
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
@@ -67,81 +67,27 @@ const Login = (props) => {
             source={require('../assests/images/logo_ott.png')}
           />
         </View>
-        <KeyboardAvoidingView
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-          <TextInput
-            style={styles.inputStyle}
-            placeholder="Email"
-            //value={this.state.displayName}
-            onChangeText={(email) => setEmail(email)}
-            placeholderTextColor="#FFFFFFC9"
-          />
 
-          <TextInput
-            style={styles.inputStyle}
-            placeholder="Password"
-            //value={this.state.displayName}
-            onChangeText={(email) => setEmail(email)}
-            placeholderTextColor="#FFFFFFC9"
-          />
-        </KeyboardAvoidingView>
-        <View
-          style={{justifyContent: 'flex-end', marginLeft: '65%', margin: 5}}>
-          <Text style={{color: '#FFFFFFE5'}}>Forgot password</Text>
-        </View>
         <TouchableHighlight
           style={[styles.buttonContainer, styles.sendButton]}
-          onPress={() => props.navigation.navigate('Home')}>
-          <Text style={styles.buttonText}>LOG IN</Text>
+          onPress={() => props.navigation.navigate('SignUp')}>
+          <Text style={styles.buttonText}>SIGN UP</Text>
         </TouchableHighlight>
 
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-          <View
-            style={{
-              flex: 0.25,
-              height: 1,
-              backgroundColor: '#707070',
-              width: (width * 0.13661333333) / 64,
-            }}
-          />
-          <View>
-            <Text style={{width: 50, textAlign: 'center', color: '#FFFFFFE5'}}>
-              Or
-            </Text>
-          </View>
-          <View
-            style={{
-              flex: 0.25,
-              height: 1,
-              backgroundColor: '#707070',
-              width: width * 0.13661333333,
-              width: (width * 0.13661333333) / 64,
-            }}
-          />
-        </View>
-        <View style={{marginTop: 29}}>
-          <TouchableHighlight
-            style={[styles.buttonContainerSocialG, styles.sendButtonSocialG]}
-            onPress={() => console.log('CONNECT WITH GOOGLE')}>
-            <Text style={styles.buttonTextG}>CONNECT WITH GOOGLE</Text>
-          </TouchableHighlight>
+        <TouchableHighlight
+          style={[styles.buttonContainerL, styles.sendButtonL]}
+          onPress={() => props.navigation.navigate('Login')}>
+          <Text
+            style={{color: '#FFFFFF', fontSize: 12, fontFamily: 'arial-bold'}}>
+            LOG IN
+          </Text>
+        </TouchableHighlight>
 
-          <TouchableHighlight
-            style={[styles.buttonContainerSocial, styles.sendButtonSocialF]}
-            onPress={() => console.log('CONNECT WITH FACEBOOK')}>
-            <Text style={styles.buttonTextF}>CONNECT WITH FACEBOOK</Text>
-          </TouchableHighlight>
-        </View>
-        <View style={styles.bottomView}>
+        {/* <View style={styles.bottomView}>
           <TouchableOpacity onPress={() => props.navigation.navigate('SignUp')}>
             <Text style={styles.textStyle}>Not yet a member ? Sign up.</Text>
           </TouchableOpacity>
-        </View>
+        </View> */}
       </View>
     </SafeAreaView>
   );
@@ -167,8 +113,28 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 20,
-    width: 100,
-    borderRadius: 5,
+    width: '80%',
+    borderRadius: 10,
+    borderColor: '#FFFFFF',
+    borderWidth: 1,
+    alignSelf: 'center',
+    shadowColor: '#00000041',
+    shadowOffset: {width: 1, height: 3},
+    shadowOpacity: 1,
+    elevation: 6,
+    marginTop: '80%',
+  },
+  sendButton: {
+    backgroundColor: '#FFFFFF',
+  },
+  buttonContainerL: {
+    height: 45,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20,
+    width: '80%',
+    borderRadius: 10,
     borderColor: '#FFFFFF',
     borderWidth: 1,
     alignSelf: 'center',
@@ -177,12 +143,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     elevation: 6,
   },
-  sendButton: {
-    backgroundColor: '#FFFFFF',
+  sendButtonL: {
+    backgroundColor: '#040404',
   },
   buttonText: {
     color: '#0D0D0D',
     fontFamily: 'arial-bold',
+    fontSize: 12,
   },
   buttonContainerSocial: {
     height: 45,
@@ -252,4 +219,4 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
 });
-export default Login;
+export default Logo;

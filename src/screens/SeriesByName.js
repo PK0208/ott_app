@@ -89,11 +89,11 @@ const SeriesByName = (props) => {
 
   return (
     <>
-      <StatusBar
+      {/* <StatusBar
         translucent
         backgroundColor="transparent"
         barStyle="light-content"
-      />
+      /> */}
       <Container>
         <Poster source={require('../assests/images/black.jpg')}>
           {/* <Gradient

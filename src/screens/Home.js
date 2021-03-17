@@ -1,388 +1,549 @@
 import React, {useState, useEffect} from 'react';
+
 import {
   StatusBar,
+  Dimensions,
   View,
   StyleSheet,
-  Dimensions,
   ScrollView,
   TextInput,
   Image,
   TouchableOpacity,
   SafeAreaView,
   Text,
+  FlatList,
+  TouchableHighlight,
   ImageBackground,
 } from 'react-native';
-import Appbar from '../components/Appbar';
-//import ImageSlider from '../components/ImageSlider';
+
+import AntIcon from 'react-native-vector-icons/AntDesign';
+import EntypoIcon from 'react-native-vector-icons/Entypo';
+import FeatherIcon from 'react-native-vector-icons/FontAwesome';
 import {useIsFocused} from '@react-navigation/native';
-import axios from 'axios';
-import {Card, CardItem, Body} from 'native-base';
-import StickyHeaderFooterScrollView from 'react-native-sticky-header-footer-scroll-view';
-import Icon from 'react-native-vector-icons/AntDesign';
-import ImageSliderComponent from '../components/ImageSlider';
+
+//import {LinearGradient} from 'expo-linear-gradient';
+
+import styled from 'styled-components/native';
+
+const Container = styled.ScrollView`
+  flex: 1;
+  background-color: #0d1f33;
+`;
+
+const Poster = styled.ImageBackground`
+  width: 100%;
+  height: ${(Dimensions.get('window').height * 81) / 100}px;
+`;
+
+/* const Gradient = styled(LinearGradient)`
+  height: 100%;
+`; */
 
 const {height, width} = Dimensions.get('window');
 
+const dataMovies = [
+  {
+    id: 1,
+    imageUri:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-VwB1KWCwZsTkTCt-1AqLQulVrkjn9Jr96Q&usqp=CAU',
+    name: 'Mirzapur',
+  },
+  {
+    id: 2,
+    imageUri:
+      'https://blogtobollywood.com/wp-content/uploads/2021/01/Telugu-movie-Red.jpg',
+    name: 'Red',
+  },
+  {
+    id: 3,
+    imageUri:
+      'https://i.pinimg.com/originals/e5/7b/5a/e57b5a031e365fb54fded45bbe8bdee0.jpg',
+    name: 'Breathe',
+  },
+  {
+    id: 4,
+    imageUri:
+      'https://image.scoopwhoop.com/w360/s4.scoopwhoop.com/anj2/5dd6457650758d76b6503bb2/bd3f981a-79ea-4c43-a22b-5a73bd92b771.jpg.webp',
+    name: 'Sacred Games',
+  },
+  {
+    id: 5,
+    imageUri:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtc3n-wll3kCg_HrAWQl9FwVK9Y6UKsla7kg&usqp=CAU',
+    name: 'Money Heist',
+  },
+  {
+    id: 5,
+    imageUri:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtc3n-wll3kCg_HrAWQl9FwVK9Y6UKsla7kg&usqp=CAU',
+    name: 'Money Heist',
+  },
+  {
+    id: 5,
+    imageUri:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtc3n-wll3kCg_HrAWQl9FwVK9Y6UKsla7kg&usqp=CAU',
+    name: 'Money Heist',
+  },
+  {
+    id: 5,
+    imageUri:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtc3n-wll3kCg_HrAWQl9FwVK9Y6UKsla7kg&usqp=CAU',
+    name: 'Money Heist',
+  },
+];
+
 const Home = (props) => {
   const isFocused = useIsFocused();
-
+  const [arr, setArr] = useState([dataMovies]);
   useEffect(() => {
-    //console.log('Height & Width', height, width);
+    console.log('User effect props MoviesByName', props.route.params);
+    setArr(dataMovies);
   }, [props, isFocused]);
 
-  const SingleRow = () => {
-    const slides = [
+  const Teasers = () => {
+    const slidesTeasers = [
       {
-        title: '1 ',
-        uri:
-          'https://content1.jdmagicbox.com/movies/mumbai_10725989252019_06_14_07_12_17_220.jpg?fit=around|210:308&crop=210:308;*,*',
+        id: 1,
+        teaserImg:
+          'https://i.pinimg.com/originals/60/ec/cc/60eccc4148db15d0cef42a3f23351d61.jpg',
       },
       {
-        title: '2 ',
-        uri:
-          'https://www.teahub.io/photos/full/253-2535453_comedy-film-mr-bean.jpg',
+        id: 2,
+        teaserImg:
+          'https://i.pinimg.com/originals/60/ec/cc/60eccc4148db15d0cef42a3f23351d61.jpg',
       },
       {
-        title: '3 ',
-        uri:
-          'https://i.pinimg.com/originals/77/4c/39/774c3958d113be25ee5a40362e99c2d5.jpg',
+        id: 3,
+        teaserImg:
+          'https://static.toiimg.com/thumb/78834613.cms?width=137&height=195&imgsize=',
       },
       {
-        title: '4 ',
-        uri:
-          'https://www.filmibeat.com/img/220x80x275/popcorn/movie_posters/evaru-20190711164519-18436.jpg',
+        id: 4,
+        teaserImg:
+          'https://static.toiimg.com/thumb/69889115.cms?width=137&height=195&imgsize=',
       },
       {
-        title: '11 ',
-        uri: 'https://www.yetstar.com/wp-content/uploads/2020/06/download.jpg',
+        id: 5,
+        teaserImg:
+          'https://cdn.123telugu.com/content/wp-content/uploads/2020/02/HIT-m-2.jpg',
       },
       {
-        title: '21 ',
-        uri:
-          'https://occ-0-2794-2219.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABao9TMw58bSJyX0HpbyhY5gizoMfnwLMvGEoO6IfZvHjup0AcSIDaiEsWWwm6P_u6fHmVyL1eaDXasAnNgeBxY0C-ADjB9ze-S5dzDFbEHkC8vFWNmlKsFCWkmvy.jpg',
+        id: 6,
+        teaserImg: 'https://www.arrahmanian.com/assets/img/hindi/mom.jpg',
       },
       {
-        title: '31 ',
-        uri:
-          'https://mk0timesnextw7n7qiu0.kinstacdn.com/wp-content/uploads/2020/04/Loser-web-series-new.jpg',
-      },
-      {
-        title: '41 ',
-        uri:
-          'https://media.gqindia.com/wp-content/uploads/2020/05/top-image-15.jpg',
+        id: 7,
+        teaserImg:
+          'https://www.auditionform.in/wp-content/uploads/2020/06/Dil-Bechara-Release-Date-Story-Cast-Trailer-Watch-on-Disney-Hotstar-1.jpg',
       },
     ];
     return (
-      <View style={{backgroundColor: '#0D1F33'}}>
-        <View
-          style={{
-            flexDirection: 'row',
-            width: '100%',
-            backgroundColor: '#0D1F33',
-          }}>
-          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-            {slides.map((item, key) => (
-              <View>
-                <TouchableOpacity
-                  onPress={() =>
-                    props.navigation.navigate('MovieByName', {
-                      name: item.name,
-                      image: item.uri,
-                    })
-                  }>
-                  <Image
-                    source={{
-                      uri: item.uri,
-                    }}
-                    style={{
-                      width: width * 0.42933333333,
-                      height: 90,
-                      margin: 5,
-                    }}
-                  />
-                </TouchableOpacity>
-              </View>
-            ))}
-          </ScrollView>
-        </View>
-      </View>
+      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+        {slidesTeasers.map((item, key) => (
+          <TouchableOpacity onPress={() => props.navigation.navigate('Teaser')}>
+            <View style={styles.roundContainer}>
+              <Image
+                source={{
+                  uri: item.teaserImg,
+                }}
+                style={{
+                  width: 90,
+                  height: 90,
+                  borderRadius: 90 / 2,
+                  borderColor: '#F04F23',
+                  borderWidth: 2,
+                }}
+              />
+            </View>
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
     );
   };
 
-  const WebSeries = () => {
-    const slides = [
+  const LatestMovies = () => {
+    const slidesLatestMovies = [
       {
-        title: '1 ',
-        uri:
-          'https://content1.jdmagicbox.com/movies/mumbai_10725989252019_06_14_07_12_17_220.jpg?fit=around|210:308&crop=210:308;*,*',
+        id: 1,
+        teaserImg:
+          'https://i.pinimg.com/originals/60/ec/cc/60eccc4148db15d0cef42a3f23351d61.jpg',
       },
       {
-        title: '2 ',
-        uri:
-          'https://www.teahub.io/photos/full/253-2535453_comedy-film-mr-bean.jpg',
+        id: 2,
+        teaserImg:
+          'https://i.pinimg.com/originals/60/ec/cc/60eccc4148db15d0cef42a3f23351d61.jpg',
       },
       {
-        title: '3 ',
-        uri:
-          'https://i.pinimg.com/originals/77/4c/39/774c3958d113be25ee5a40362e99c2d5.jpg',
+        id: 3,
+        teaserImg:
+          'https://static.toiimg.com/thumb/78834613.cms?width=137&height=195&imgsize=',
       },
       {
-        title: '4 ',
-        uri:
-          'https://www.filmibeat.com/img/220x80x275/popcorn/movie_posters/evaru-20190711164519-18436.jpg',
+        id: 4,
+        teaserImg:
+          'https://static.toiimg.com/thumb/69889115.cms?width=137&height=195&imgsize=',
       },
       {
-        title: '11 ',
-        uri: 'https://www.yetstar.com/wp-content/uploads/2020/06/download.jpg',
+        id: 5,
+        teaserImg:
+          'https://cdn.123telugu.com/content/wp-content/uploads/2020/02/HIT-m-2.jpg',
       },
       {
-        title: '21 ',
-        uri:
-          'https://occ-0-2794-2219.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABao9TMw58bSJyX0HpbyhY5gizoMfnwLMvGEoO6IfZvHjup0AcSIDaiEsWWwm6P_u6fHmVyL1eaDXasAnNgeBxY0C-ADjB9ze-S5dzDFbEHkC8vFWNmlKsFCWkmvy.jpg',
+        id: 6,
+        teaserImg: 'https://www.arrahmanian.com/assets/img/hindi/mom.jpg',
       },
       {
-        title: '31 ',
-        uri:
-          'https://mk0timesnextw7n7qiu0.kinstacdn.com/wp-content/uploads/2020/04/Loser-web-series-new.jpg',
-      },
-      {
-        title: '41 ',
-        uri:
-          'https://media.gqindia.com/wp-content/uploads/2020/05/top-image-15.jpg',
+        id: 7,
+        teaserImg:
+          'https://www.auditionform.in/wp-content/uploads/2020/06/Dil-Bechara-Release-Date-Story-Cast-Trailer-Watch-on-Disney-Hotstar-1.jpg',
       },
     ];
     return (
-      <View style={{backgroundColor: '#0D1F33'}}>
-        <View
-          style={{
-            flexDirection: 'row',
-            width: '100%',
-            backgroundColor: '#0D1F33',
-          }}>
-          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-            {slides.map((item, key) => (
-              <View>
-                <TouchableOpacity
-                  onPress={() =>
-                    props.navigation.navigate('SeriesByName', {
-                      name: item.name,
-                      image: item.uri,
-                    })
-                  }>
-                  <Image
-                    source={{
-                      uri: item.uri,
-                    }}
-                    style={{
-                      width: width * 0.42933333333,
-                      height: 90,
-                      margin: 5,
-                    }}
-                  />
-                </TouchableOpacity>
-              </View>
-            ))}
-          </ScrollView>
-        </View>
-      </View>
+      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+        {slidesLatestMovies.map((item, key) => (
+          <View style={styles.roundContainer}>
+            <Image
+              source={{
+                uri: item.teaserImg,
+              }}
+              style={{
+                width: width * 0.33333333333,
+                height: 160,
+              }}
+            />
+          </View>
+        ))}
+      </ScrollView>
     );
   };
 
-  const NavigateToGenres = (name) => {
-    if (name == 'Action and adventure') {
-      console.log('Navigating to ', name);
-      props.navigation.navigate('ActionAdventure');
-    } else if (name == 'Comedy') {
-      console.log('Navigating to ', name);
-      props.navigation.navigate('ComedyMovies');
-    } else if (name == 'Drama') {
-      console.log('Navigating to ', name);
-      props.navigation.navigate('DramaMovies');
-    } else if (name == 'Crime') {
-      console.log('Navigating to ', name);
-      props.navigation.navigate('CrimeMovies');
-    } else if (name == 'Animated') {
-      console.log('Navigating to ', name);
-      props.navigation.navigate('AnimatedMovies');
-    } else if (name == 'Horror') {
-      console.log('Navigating to ', name);
-      props.navigation.navigate('HorrorMovies');
-    } else if (name == 'Romance') {
-      console.log('Navigating to ', name);
-      props.navigation.navigate('RomanceMovies');
-    }
-  };
-
-  const GenresRow = () => {
-    const slidesGeners = [
+  const Generes = () => {
+    const slidesGeneres = [
       {
-        title: '1 ',
-        name: 'Action and adventure',
-        uri:
-          'https://content1.jdmagicbox.com/movies/mumbai_10725989252019_06_14_07_12_17_220.jpg?fit=around|210:308&crop=210:308;*,*',
+        id: 1,
+        teaserImg:
+          'https://i.pinimg.com/originals/60/ec/cc/60eccc4148db15d0cef42a3f23351d61.jpg',
       },
       {
-        title: '2 ',
-        name: 'Comedy',
-        uri:
-          'https://www.teahub.io/photos/full/253-2535453_comedy-film-mr-bean.jpg',
+        id: 2,
+        teaserImg:
+          'https://i.pinimg.com/originals/60/ec/cc/60eccc4148db15d0cef42a3f23351d61.jpg',
       },
       {
-        title: '3 ',
-        name: 'Drama',
-        uri:
-          'https://i.pinimg.com/originals/77/4c/39/774c3958d113be25ee5a40362e99c2d5.jpg',
+        id: 3,
+        teaserImg:
+          'https://static.toiimg.com/thumb/78834613.cms?width=137&height=195&imgsize=',
       },
       {
-        title: '4 ',
-        name: 'Crime',
-        uri:
-          'https://www.filmibeat.com/img/220x80x275/popcorn/movie_posters/evaru-20190711164519-18436.jpg',
+        id: 4,
+        teaserImg:
+          'https://static.toiimg.com/thumb/69889115.cms?width=137&height=195&imgsize=',
       },
       {
-        title: '11 ',
-        name: 'Animated',
-        uri:
-          'https://cdn.cdnparenting.com/articles/2019/02/03181714/240651844-H.jpg',
+        id: 5,
+        teaserImg:
+          'https://cdn.123telugu.com/content/wp-content/uploads/2020/02/HIT-m-2.jpg',
       },
       {
-        title: '21 ',
-        name: 'Romance',
-        uri:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRG6fRceGxkHLHTEJWsNC1GI205O2vjNOhp0Q&usqp=CAU',
+        id: 6,
+        teaserImg: 'https://www.arrahmanian.com/assets/img/hindi/mom.jpg',
       },
       {
-        title: '31 ',
-        name: 'Horror',
-        uri:
-          'https://qqcdnpictest.mxplay.com/pic/484f535d77542bca63e21efb896f4cd6/en/2x3/320x480/0b192c87e58113035031e044bfec3300_1280x1920.webp',
+        id: 7,
+        teaserImg:
+          'https://www.auditionform.in/wp-content/uploads/2020/06/Dil-Bechara-Release-Date-Story-Cast-Trailer-Watch-on-Disney-Hotstar-1.jpg',
       },
     ];
     return (
-      <View style={{flex: 1, alignItems: 'stretch', justifyContent: 'center'}}>
-        <View
-          style={{
-            flexDirection: 'row',
-            width: '100%',
-            backgroundColor: '#0D1F33',
-          }}>
-          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-            {slidesGeners.map((item, key) => (
-              <TouchableOpacity onPress={() => NavigateToGenres(item.name)}>
-                <View style={styles.genreCard}>
-                  <ImageBackground
-                    style={{flex: 1, borderRadius: 24}}
-                    imageStyle={{borderRadius: 24}}
-                    source={{
-                      uri: item.uri,
-                    }}
-                    blurRadius={1}>
-                    <Text
-                      style={{
-                        color: '#FFFFFF',
-                        textAlign: 'center',
-                        marginTop: '25%',
-                        fontFamily: 'MuktaMalar-SemiBold',
-                        fontSize: 19,
-                      }}>
-                      {item.name}
-                    </Text>
-                  </ImageBackground>
-                </View>
-              </TouchableOpacity>
-            ))}
-          </ScrollView>
-        </View>
-      </View>
+      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+        {slidesGeneres.map((item, key) => (
+          <View style={styles.roundContainer}>
+            <Image
+              source={{
+                uri: item.teaserImg,
+              }}
+              style={{
+                width: width * 0.53333333333,
+                height: 130,
+              }}
+            />
+          </View>
+        ))}
+      </ScrollView>
+    );
+  };
+
+  const TopMovies = () => {
+    const slidesTopMovies = [
+      {
+        id: 1,
+        teaserImg:
+          'https://i.pinimg.com/originals/60/ec/cc/60eccc4148db15d0cef42a3f23351d61.jpg',
+      },
+      {
+        id: 2,
+        teaserImg:
+          'https://i.pinimg.com/originals/60/ec/cc/60eccc4148db15d0cef42a3f23351d61.jpg',
+      },
+      {
+        id: 3,
+        teaserImg:
+          'https://static.toiimg.com/thumb/78834613.cms?width=137&height=195&imgsize=',
+      },
+      {
+        id: 4,
+        teaserImg:
+          'https://static.toiimg.com/thumb/69889115.cms?width=137&height=195&imgsize=',
+      },
+      {
+        id: 5,
+        teaserImg:
+          'https://cdn.123telugu.com/content/wp-content/uploads/2020/02/HIT-m-2.jpg',
+      },
+      {
+        id: 6,
+        teaserImg: 'https://www.arrahmanian.com/assets/img/hindi/mom.jpg',
+      },
+      {
+        id: 7,
+        teaserImg:
+          'https://www.auditionform.in/wp-content/uploads/2020/06/Dil-Bechara-Release-Date-Story-Cast-Trailer-Watch-on-Disney-Hotstar-1.jpg',
+      },
+    ];
+    return (
+      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+        {slidesTopMovies.map((item, key) => (
+          <View style={styles.roundContainer}>
+            <Image
+              source={{
+                uri: item.teaserImg,
+              }}
+              style={{
+                width: width * 0.33333333333,
+                height: 160,
+              }}
+            />
+          </View>
+        ))}
+      </ScrollView>
     );
   };
 
   return (
-    /*  <View style={{height: '100%', backgroundColor: '#0D1F33'}}>
-      <ImageSliderComponent />
-    </View> */
+    <>
+      <StatusBar
+        translucent
+        backgroundColor="transparent"
+        barStyle="light-content"
+      />
+      <Container>
+        <Poster source={require('../assests/images/black.jpg')}>
+          <View>
+            <TouchableHighlight
+              style={[styles.buttonContainer, styles.sendButton]}
+              onPress={() => console.log('Play Button Home Screen')}>
+              <Text style={styles.buttonText}>PLAY</Text>
+            </TouchableHighlight>
+          </View>
+        </Poster>
+        <View></View>
+        <Text
+          style={{
+            marginLeft: 17,
+            fontSize: 14,
+            color: '#FFFFFFE5',
+            margin: 5,
+            fontFamily: 'arial-bold',
+          }}>
+          Teaser
+        </Text>
 
-    <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="light-content" />
-      <ImageSliderComponent />
-      <ScrollView>
-        <View style={{marginTop: 5, backgroundColor: '#0D1F33'}}>
-          <Text
-            style={{
-              color: '#D2DAE0',
-              fontFamily: 'Al Nile',
-              fontWeight: 'bold',
-              fontSize: 18,
-              margin: 5,
-            }}>
-            Popular Movies
-          </Text>
-          <SingleRow />
-          <Text
-            style={{
-              color: '#D2DAE0',
-              fontFamily: 'Al Nile',
-              fontWeight: 'bold',
-              fontSize: 18,
-              margin: 5,
-            }}>
-            Popular Series
-          </Text>
-          {/* <SingleRow /> */}
-          <WebSeries />
-          <Text
-            style={{
-              color: '#D2DAE0',
-              fontFamily: 'Al Nile',
-              fontWeight: 'bold',
-              fontSize: 18,
-              margin: 5,
-            }}>
-            Coming Soon
-          </Text>
-          <SingleRow />
-          <Text
-            style={{
-              color: '#D2DAE0',
-              fontFamily: 'Al Nile',
-              fontWeight: 'bold',
-              fontSize: 18,
-              margin: 5,
-            }}>
-            Movie Genres
-          </Text>
-          <GenresRow />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+        <Teasers />
+
+        <Text
+          style={{
+            marginLeft: 17,
+            fontSize: 14,
+            color: '#FFFFFFE5',
+            margin: 5,
+            fontFamily: 'arial-bold',
+          }}>
+          Latest Movies
+        </Text>
+
+        <LatestMovies />
+
+        <Text
+          style={{
+            marginLeft: 17,
+            fontSize: 14,
+            color: '#FFFFFFE5',
+            margin: 5,
+            fontFamily: 'arial-bold',
+          }}>
+          Generes
+        </Text>
+
+        <Generes />
+
+        <Text
+          style={{
+            marginLeft: 17,
+            fontSize: 14,
+            color: '#FFFFFFE5',
+            margin: 5,
+            fontFamily: 'arial-bold',
+          }}>
+          Top Movies
+        </Text>
+
+        <TopMovies />
+        <Text
+          style={{
+            marginLeft: 17,
+            fontSize: 14,
+            color: '#FFFFFFE5',
+            margin: 5,
+            fontFamily: 'arial-bold',
+          }}>
+          Coming Soon
+        </Text>
+
+        {/* Slider Images */}
+
+        <Image
+          source={{
+            uri:
+              'https://i.pinimg.com/originals/2c/78/4a/2c784a07c47ec084c8a25bf217353484.jpg',
+          }}
+          style={{
+            width: width * 0.93333333333,
+            height: 160,
+            justifyContent: 'center',
+            alignItems: 'center',
+            alignSelf: 'center',
+            marginBottom: 30,
+          }}
+        />
+      </Container>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    //backgroundColor: "orange"
     backgroundColor: '#0D1F33',
   },
-  cardStyle: {
-    backgroundColor: '#0D1F33',
-    //padding: 10,
-    //marginLeft: 0,
-    //marginRight: 0,
-    //marginTop: 0,
+  text: {
+    fontFamily: 'HelveticaNeue Regular',
+    fontSize: 12,
+    color: '#BEBABA',
+    marginLeft: 27,
+    margin: 5,
   },
-  genreCard: {
+  item1: {
+    flex: 1,
+    backgroundColor: '#0D1F33',
+  },
+  item2: {
+    flex: 1,
+    backgroundColor: '#0D1F33',
+  },
+  cardImage: {
+    height: '100%',
+    width: '100%',
+  },
+  buttonContainer: {
+    height: 30,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20,
+    width: 100,
+    borderRadius: 5,
+    borderColor: '#FFFFFF',
+    borderWidth: 1,
+    alignSelf: 'center',
+    shadowColor: '#00000041',
+    shadowOffset: {width: 1, height: 3},
+    shadowOpacity: 1,
+    elevation: 6,
+    marginTop: height * 0.34002361275 * 2.2,
+  },
+  sendButton: {
+    backgroundColor: '#FFFFFF',
+  },
+  buttonContainer1: {
+    height: height * 0.02355072463,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20,
+    width: width * 0.24533333333,
+    borderRadius: 9,
+    borderColor: '#0D1F33',
+    borderWidth: 1,
+    alignSelf: 'center',
+    marginTop: 10,
+    marginLeft: 23,
+    backgroundColor: '#FFFFFF',
+  },
+  sendButton: {
+    backgroundColor: '#FFFFFF',
+    paddingVertical: 10,
+    marginVertical: 10,
+    paddingHorizontal: 5,
+  },
+  buttonText: {
+    color: '#000000',
+    fontFamily: 'verdanab',
+    fontSize: 13,
+    paddingVertical: 10,
+    marginVertical: 10,
+  },
+  card: {
+    width: width * 0.88850666666,
+    //height: 150,
+    flexDirection: 'row',
+    padding: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    //borderWidth: 1,
+    marginLeft: 21,
+  },
+  cardImageN: {
+    height: 70,
+    width: 120,
+    borderRadius: 15,
+  },
+  title: {
+    fontSize: 14,
+    flex: 1,
+    color: '#FFFFFF',
+    marginLeft: 7,
+    fontFamily: 'arial-bold',
+  },
+  RectangularCard: {
     //width: width * 0.41066666666,
     //height: (height * 5.81286549708) / 4 / 4,
-    height: width * 0.41066666666,
-    width: (height * 5.81286549708) / 4 / 8,
-    //height: 171,
-    //width:154,
+    //height: (height * 0.41066666666) / 2,
+    //width: (width * 5.81286549708) / 22,
     //borderWidth: 1,
-    //marginLeft: 11,
-    margin: 5,
-    //borderRadius: 24,
+    marginLeft: 11,
+    borderRadius: 20,
     alignItems: 'stretch',
     justifyContent: 'center',
+    alignSelf: 'center',
+    marginTop: 5,
+  },
+  roundContainer: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    margin: 10,
+    paddingTop: Platform.OS === 'ios' ? 20 : 0,
   },
 });
+
 export default Home;

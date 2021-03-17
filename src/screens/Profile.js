@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   SafeAreaView,
   Text,
+  TouchableHighlight,
 } from 'react-native';
 import Appbar from '../components/Appbar';
 //import ImageSlider from '../components/ImageSlider';
@@ -30,45 +31,54 @@ const Profile = (props) => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="light-content" />
+      <View
+        style={{justifyContent: 'center', alignItems: 'center', marginTop: 50}}>
+        <Text
+          style={{color: '#FFFFFF', fontSize: 18, fontFamily: 'arial-bold'}}>
+          My Profile
+        </Text>
+      </View>
       <View style={styles.container1}>
         <View style={{alignItems: 'center', marginHorizontal: 30}}>
           <Image
             style={styles.productImg}
             source={require('../assests/images/nairobi.jpg')}
           />
-          <Text style={styles.name}>Nairobi</Text>
-
-          <View
-            style={{
-              borderWidth: 2,
-              borderColor: '#B1B1B1',
-              width: '100%',
-            }}></View>
+          <Text style={styles.name}>John Williams</Text>
+          <Text style={styles.email}>JohnWilliams@Williams.com</Text>
         </View>
 
-        <View style={{flexDirection: 'row'}}>
-          <View
-            style={{
-              flexDirection: 'column',
-              marginHorizontal: 20,
-              margin: 15,
-            }}>
-            <Text style={styles.rightText}>My list</Text>
-            <Text style={styles.rightText}>Subsection</Text>
-            <Text style={styles.rightText}>Change Name</Text>
-            <Text style={styles.rightText}>Change Email</Text>
-            <Text style={styles.rightText}>Change Phone No.</Text>
-            <TouchableOpacity
-              onPress={() => props.navigation.navigate('Login')}>
-              <Text style={styles.rightText}>Log out </Text>
-            </TouchableOpacity>
-          </View>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-evenly',
+            alignItems: 'center',
+            marginTop: 27,
+          }}>
+          <TouchableOpacity
+            style={[styles.buttonContainer, styles.sendButton]}
+            onPress={() => console.log('Edit Profile')}>
+            <Text style={{color: '#000000', fontFamily: 'arial-bold'}}>
+              EDIT PROFILE
+            </Text>
+          </TouchableOpacity>
 
-          <View style={{flexDirection: 'column', margin: 15}}>
-            <Text style={styles.leftText}> </Text>
-            <Text style={styles.leftText}>Exp.Date: 06/22</Text>
-          </View>
+          <TouchableOpacity
+            style={[styles.buttonContainerS, styles.sendButtonS]}
+            onPress={() => props.navigation.navigate('Settings')}>
+            <Text style={{color: '#FFFFFF', fontFamily: 'arial-bold'}}>
+              SETTINGS
+            </Text>
+          </TouchableOpacity>
         </View>
+
+        <View
+          style={{
+            borderWidth: 1,
+            borderColor: '#FFFFFF',
+            marginLeft: 30,
+            marginRight: 30,
+          }}></View>
       </View>
 
       <View
@@ -78,10 +88,10 @@ const Profile = (props) => {
           alignSelf: 'center',
           margin: 5,
         }}>
-        <Text style={styles.bottomText}>Contact us</Text>
+        <Text style={styles.bottomText}>About us</Text>
         <View
           style={{borderWidth: 1, borderColor: '#707070', margin: 5}}></View>
-        <Text style={styles.bottomText}>About us</Text>
+        <Text style={styles.bottomText}>T & C</Text>
       </View>
     </SafeAreaView>
   );
@@ -101,20 +111,23 @@ const styles = StyleSheet.create({
   },
   container1: {
     flex: 1,
-    marginTop: 20,
+    marginTop: 50,
   },
   productImg: {
-    width: width * 0.35733333333,
-    height: width * 0.35733333333,
-    borderRadius: 27,
+    width: 117,
+    height: 117,
+    borderRadius: 117 / 2,
+    borderWidth: 2,
+    borderColor: 'white',
   },
   name: {
-    fontSize: 23,
+    fontSize: 19,
     color: '#FFFFFF',
     //fontWeight: 'bold',
-    fontFamily: 'MuktaMalar-Bold',
-    marginHorizontal: 10,
-    marginVertical: 10,
+    fontFamily: 'arial-bold',
+    //marginHorizontal: 10,
+    //marginVertical: 10,
+    marginTop: 15,
   },
   rightText: {
     fontSize: 18,
@@ -132,8 +145,56 @@ const styles = StyleSheet.create({
   },
   bottomText: {
     fontSize: 14,
-    fontFamily: 'HelveticaNeue Regular',
+    fontFamily: 'Arial regular',
     color: '#B9B8B8',
+  },
+  email: {
+    color: '#FFFFFF',
+    fontSize: 11,
+    fontFamily: 'Arial regular',
+    marginTop: 7,
+  },
+  buttonContainer: {
+    height: 30,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20,
+    width: width * 0.30058666666,
+    borderRadius: 5,
+    borderColor: '#FFFFFF',
+    borderWidth: 1,
+    alignSelf: 'center',
+    shadowColor: '#00000041',
+    shadowOffset: {width: 1, height: 3},
+    shadowOpacity: 1,
+    elevation: 6,
+    //marginTop: height * 0.34002361275 * 2.2,
+    backgroundColor: '#FFFFFF',
+  },
+  sendButton: {
+    backgroundColor: '#FFFFFF',
+  },
+  buttonContainerS: {
+    height: 30,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20,
+    width: width * 0.30058666666,
+    borderRadius: 5,
+    borderColor: '#FFFFFF',
+    borderWidth: 1,
+    alignSelf: 'center',
+    shadowColor: '#00000041',
+    shadowOffset: {width: 1, height: 3},
+    shadowOpacity: 1,
+    elevation: 6,
+    //marginTop: height * 0.34002361275 * 2.2,
+    backgroundColor: '#FFFFFF',
+  },
+  sendButtonS: {
+    backgroundColor: '#040404',
   },
 });
 export default Profile;

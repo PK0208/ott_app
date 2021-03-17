@@ -102,11 +102,11 @@ const MovieByName = (props) => {
 
   return (
     <>
-      <StatusBar
+      {/* <StatusBar
         translucent
         backgroundColor="transparent"
         barStyle="light-content"
-      />
+      /> */}
       <Container>
         <Poster source={require('../assests/images/black.jpg')}>
           {/* <Gradient
@@ -167,6 +167,7 @@ const MovieByName = (props) => {
             fontSize: 18,
             marginLeft: 23,
             marginTop: 5,
+            marginBottom: 5
           }}>
           More Movies
         </Text>
@@ -213,6 +214,7 @@ const MovieByName = (props) => {
                     //width: width * 0.29866666666,
                     //height: height * 0.12068965517,
                     //margin: 5,
+                    borderRadius: 15,
                     height: width * 0.29866666666,
                     width: height * 0.12068965517,
                   }}
@@ -350,10 +352,10 @@ const styles = StyleSheet.create({
     //width: (width * 5.81286549708) / 22,
     //borderWidth: 1,
     marginLeft: 11,
-    //borderRadius: 24,
-    //alignItems: 'stretch',
-    //justifyContent: 'center',
-    //alignSelf: 'center',
+    borderRadius: 20,
+    alignItems: 'stretch',
+    justifyContent: 'center',
+    alignSelf: 'center',
     marginTop: 5,
   },
 });
