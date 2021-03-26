@@ -37,6 +37,23 @@ const Poster = styled.ImageBackground`
 
 const {height, width} = Dimensions.get('window');
 
+const AccountOptions = [
+  {
+    name: 'Change Password        ',
+  },
+  {
+    name: 'Change Phone Number',
+  },
+];
+
+const OtherOptions = [
+  {
+    name: 'Privacy policy          ',
+  },
+  {
+    name: 'Teams & Conditions',
+  },
+];
 const Teaser = (props) => {
   const isFocused = useIsFocused();
 
@@ -136,6 +153,50 @@ const Teaser = (props) => {
             />
           </TouchableOpacity>
         </View>
+        {/* {AccountOptions.map((item) => {
+          return (
+            <TouchableOpacity
+              style={[styles.buttonContainerS, styles.sendButtonS]}>
+              <View
+                style={{
+                  //borderWidth: 1,
+                  //borderRadius: 25,
+                  //borderColor: '#707070',
+                  //backgroundColor: '#FFFFFF',
+                  flexDirection: 'row',
+                  //width: '80%',
+                  //margin: 5,
+                  //width: width * 0.5413333333,
+                }}>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    //justifyContent: 'space-between',
+                    //width: width * 0.49018666666,
+                  }}>
+                  <Text
+                    style={{
+                      color: '#FFFFFF',
+                      fontFamily: 'arial-bold',
+                      marginLeft: width * 0.04533333333,
+                      fontSize: 15,
+                    }}
+                    ellipsizeMode="tail">
+                    {item.name}
+                  </Text>
+                </View>
+                <View style={{flexDirection: 'row-reverse'}}>
+                  <AntIcon
+                    name="right"
+                    color="#FFFFFF"
+                    size={20}
+                    style={{marginLeft: '38%'}}
+                  />
+                </View>
+              </View>
+            </TouchableOpacity>
+          );
+        })} */}
 
         <Text
           style={{
@@ -192,7 +253,52 @@ const Teaser = (props) => {
           </TouchableOpacity>
         </View>
 
-        <View style={{flexDirection: 'row', marginTop: 10}}>
+        {/*  {OtherOptions.map((item) => {
+          return (
+            <TouchableOpacity
+              style={[styles.buttonContainerS, styles.sendButtonS]}>
+              <View
+                style={{
+                  //borderWidth: 1,
+                  //borderRadius: 25,
+                  //borderColor: '#707070',
+                  //backgroundColor: '#FFFFFF',
+                  flexDirection: 'row',
+                  //width: '80%',
+                  //margin: 5,
+                  //width: width * 0.5413333333,
+                }}>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    //justifyContent: 'space-between',
+                    //width: width * 0.49018666666,
+                  }}>
+                  <Text
+                    style={{
+                      color: '#FFFFFF',
+                      fontFamily: 'arial-bold',
+                      marginLeft: width * 0.04533333333,
+                      fontSize: 15,
+                    }}
+                    ellipsizeMode="tail">
+                    {item.name}
+                  </Text>
+                </View>
+                <View style={{flexDirection: 'row-reverse'}}>
+                  <AntIcon
+                    name="right"
+                    color="#FFFFFF"
+                    size={20}
+                    style={{marginLeft: '45%'}}
+                  />
+                </View>
+              </View>
+            </TouchableOpacity>
+          );
+        })} */}
+
+        <View style={{flexDirection: 'row'}}>
           <TouchableOpacity
             style={[styles.buttonContainerS, styles.sendButtonS]}
             onPress={() => props.navigation.navigate('Settings')}>
@@ -235,7 +341,8 @@ const styles = StyleSheet.create({
     //marginTop: height * 0.34002361275 * 2.2,
     backgroundColor: '#FFFFFF',
     marginLeft: width * 0.06133333333,
-    padding: 5,
+    //padding: 5,
+    margin: 10,
   },
   sendButtonS: {
     backgroundColor: '#555555',

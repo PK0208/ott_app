@@ -153,7 +153,7 @@ const SignUp = (props) => {
             onPress={() => console.log('CONNECT WITH GOOGLE')}>
             <Image
               style={styles.socialImg}
-              source={require('../assests/images/fb_icon.png')}
+              source={require('../assests/images/fb_icon1.png')}
             />
             <Text style={styles.buttonTextF}>CONNECT WITH FACEBOOK</Text>
           </TouchableOpacity>
