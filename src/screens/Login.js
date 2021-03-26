@@ -105,12 +105,18 @@ const Login = (props) => {
             style={{
               flex: 0.25,
               height: 1,
-              backgroundColor: '#707070',
+              backgroundColor: '#FFFFFFC9',
               width: (width * 0.13661333333) / 64,
             }}
           />
           <View>
-            <Text style={{width: 50, textAlign: 'center', color: '#FFFFFFE5'}}>
+            <Text
+              style={{
+                width: 50,
+                textAlign: 'center',
+                color: '#FFFFFFE5',
+                fontFamily: 'Arial regular',
+              }}>
               Or
             </Text>
           </View>
@@ -118,24 +124,32 @@ const Login = (props) => {
             style={{
               flex: 0.25,
               height: 1,
-              backgroundColor: '#707070',
+              backgroundColor: '#FFFFFFC9',
               width: width * 0.13661333333,
               width: (width * 0.13661333333) / 64,
             }}
           />
         </View>
         <View style={{marginTop: 29}}>
-          <TouchableHighlight
+          <TouchableOpacity
             style={[styles.buttonContainerSocialG, styles.sendButtonSocialG]}
             onPress={() => console.log('CONNECT WITH GOOGLE')}>
+            <Image
+              style={styles.socialImg}
+              source={require('../assests/images/google_icon.png')}
+            />
             <Text style={styles.buttonTextG}>CONNECT WITH GOOGLE</Text>
-          </TouchableHighlight>
+          </TouchableOpacity>
 
-          <TouchableHighlight
+          <TouchableOpacity
             style={[styles.buttonContainerSocial, styles.sendButtonSocialF]}
-            onPress={() => console.log('CONNECT WITH FACEBOOK')}>
+            onPress={() => console.log('CONNECT WITH GOOGLE')}>
+            <Image
+              style={styles.socialImg}
+              source={require('../assests/images/fb_icon.png')}
+            />
             <Text style={styles.buttonTextF}>CONNECT WITH FACEBOOK</Text>
-          </TouchableHighlight>
+          </TouchableOpacity>
         </View>
         <View style={styles.bottomView}>
           <TouchableOpacity onPress={() => props.navigation.navigate('SignUp')}>
@@ -158,7 +172,7 @@ const styles = StyleSheet.create({
     //marginBottom: 15,
     //paddingBottom: 15,
     alignSelf: 'center',
-    borderColor: '#403D3DC9',
+    borderColor: '#FFFFFFC9',
     borderBottomWidth: 1,
   },
   buttonContainer: {
@@ -183,6 +197,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#0D0D0D',
     fontFamily: 'arial-bold',
+    fontSize: 12,
   },
   buttonContainerSocial: {
     height: 45,
@@ -217,10 +232,12 @@ const styles = StyleSheet.create({
   buttonTextG: {
     color: '#000000',
     fontFamily: 'arial-bold',
+    fontSize: 12,
   },
   buttonTextF: {
     color: 'white',
     fontFamily: 'arial-bold',
+    fontSize: 12,
   },
   button: {
     padding: 10,
@@ -250,6 +267,13 @@ const styles = StyleSheet.create({
   textStyle: {
     color: '#FFFFFFE5',
     fontSize: 14,
+    fontFamily: 'arial-bold',
+  },
+  socialImg: {
+    width: width * 0.032 * 1.25,
+    height: width * 0.032 * 1.25,
+    marginRight: 20,
+    marginLeft: -30,
   },
 });
 export default Login;

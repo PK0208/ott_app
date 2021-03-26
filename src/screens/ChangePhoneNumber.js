@@ -67,7 +67,7 @@ const ChangePhoneNumber = (props) => {
               fontSize: 18,
               fontFamily: 'arial-bold',
             }}>
-            Change Phone Number
+            Change Number
           </Text>
 
           <TouchableOpacity onPress={() => props.navigation.goBack()}>
@@ -77,6 +77,7 @@ const ChangePhoneNumber = (props) => {
                 color: '#FFFFFF',
                 fontSize: 15,
                 fontFamily: 'Arial regular',
+                //marginRight: width / 24,
               }}>
               cancel
             </Text>
@@ -123,7 +124,13 @@ const ChangePhoneNumber = (props) => {
         <TouchableOpacity
           style={[styles.buttonContainer, styles.sendButton]}
           onPress={() => console.log('Update Change Password')}>
-          <Text style={{color: '#000000', fontFamily: 'arial-bold', margin: 5}}>
+          <Text
+            style={{
+              color: '#000000',
+              fontFamily: 'arial-bold',
+              margin: 5,
+              fontSize: 11,
+            }}>
             UPDATE
           </Text>
         </TouchableOpacity>

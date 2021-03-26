@@ -32,7 +32,7 @@ const Container = styled.ScrollView`
 
 const Poster = styled.ImageBackground`
   width: 100%;
-  height: ${(Dimensions.get('window').height * 95) / 100}px;
+  height: ${(Dimensions.get('window').height * 100) / 100}px;
 `;
 
 const {height, width} = Dimensions.get('window');

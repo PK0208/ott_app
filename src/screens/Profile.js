@@ -57,8 +57,9 @@ const Profile = (props) => {
           }}>
           <TouchableOpacity
             style={[styles.buttonContainer, styles.sendButton]}
-            onPress={() => console.log('Edit Profile')}>
-            <Text style={{color: '#000000', fontFamily: 'arial-bold'}}>
+            onPress={() => props.navigation.navigate('EditProfile')}>
+            <Text
+              style={{color: '#000000', fontFamily: 'arial-bold', fontSize: 9}}>
               EDIT PROFILE
             </Text>
           </TouchableOpacity>
@@ -66,7 +67,12 @@ const Profile = (props) => {
           <TouchableOpacity
             style={[styles.buttonContainerS, styles.sendButtonS]}
             onPress={() => props.navigation.navigate('Settings')}>
-            <Text style={{color: '#FFFFFF', fontFamily: 'arial-bold'}}>
+            <Text
+              style={{
+                color: '#FFFFFF',
+                fontFamily: 'arial-bold',
+                fontSize: 10,
+              }}>
               SETTINGS
             </Text>
           </TouchableOpacity>

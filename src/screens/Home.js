@@ -20,8 +20,10 @@ import AntIcon from 'react-native-vector-icons/AntDesign';
 import EntypoIcon from 'react-native-vector-icons/Entypo';
 import FeatherIcon from 'react-native-vector-icons/FontAwesome';
 import {useIsFocused} from '@react-navigation/native';
+import Header from '../components/Header';
 
 //import {LinearGradient} from 'expo-linear-gradient';
+import LinearGradient from 'react-native-linear-gradient';
 
 import styled from 'styled-components/native';
 
@@ -32,7 +34,7 @@ const Container = styled.ScrollView`
 
 const Poster = styled.ImageBackground`
   width: 100%;
-  height: ${(Dimensions.get('window').height * 81) / 100}px;
+  height: ${(Dimensions.get('window').height * 76) / 100}px;
 `;
 
 /* const Gradient = styled(LinearGradient)`
@@ -97,6 +99,7 @@ const Home = (props) => {
   const [arr, setArr] = useState([dataMovies]);
   useEffect(() => {
     console.log('User effect props MoviesByName', props.route.params);
+    console.log('Height', height, 'Width', width);
     setArr(dataMovies);
   }, [props, isFocused]);
 
@@ -337,6 +340,7 @@ const Home = (props) => {
         barStyle="light-content"
       />
       <Container>
+        {/* <Header /> */}
         <Poster source={require('../assests/images/black.jpg')}>
           <View>
             <TouchableHighlight
@@ -347,6 +351,7 @@ const Home = (props) => {
           </View>
         </Poster>
         <View></View>
+
         <Text
           style={{
             marginLeft: 17,
@@ -470,7 +475,7 @@ const styles = StyleSheet.create({
     shadowOffset: {width: 1, height: 3},
     shadowOpacity: 1,
     elevation: 6,
-    marginTop: height * 0.34002361275 * 2.2,
+    marginTop: height * 0.34002361275 * 2,
   },
   sendButton: {
     backgroundColor: '#FFFFFF',
@@ -543,6 +548,9 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     margin: 10,
     paddingTop: Platform.OS === 'ios' ? 20 : 0,
+  },
+  linearGradient: {
+    //marginBottom: 25,
   },
 });
 

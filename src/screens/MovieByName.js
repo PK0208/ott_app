@@ -18,7 +18,7 @@ import {
 
 import AntIcon from 'react-native-vector-icons/AntDesign';
 import EntypoIcon from 'react-native-vector-icons/Entypo';
-import FeatherIcon from 'react-native-vector-icons/FontAwesome';
+import MatIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useIsFocused} from '@react-navigation/native';
 
 //import {LinearGradient} from 'expo-linear-gradient';
@@ -32,7 +32,7 @@ const Container = styled.ScrollView`
 
 const Poster = styled.ImageBackground`
   width: 100%;
-  height: ${(Dimensions.get('window').height * 81) / 100}px;
+  height: ${(Dimensions.get('window').height * 40) / 100}px;
 `;
 
 /* const Gradient = styled(LinearGradient)`
@@ -90,13 +90,19 @@ const dataMovies = [
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtc3n-wll3kCg_HrAWQl9FwVK9Y6UKsla7kg&usqp=CAU',
     name: 'Money Heist',
   },
+  {
+    id: 4,
+    imageUri:
+      'https://image.scoopwhoop.com/w360/s4.scoopwhoop.com/anj2/5dd6457650758d76b6503bb2/bd3f981a-79ea-4c43-a22b-5a73bd92b771.jpg.webp',
+    name: 'Sacred Games',
+  },
 ];
 
 const MovieByName = (props) => {
   const isFocused = useIsFocused();
   const [arr, setArr] = useState([dataMovies]);
   useEffect(() => {
-    console.log('User effect props MoviesByName', props.route.params);
+    console.log('Use effect props MoviesByName', props.route.params);
     setArr(dataMovies);
   }, [props, isFocused]);
 
@@ -108,7 +114,9 @@ const MovieByName = (props) => {
         barStyle="light-content"
       /> */}
       <Container>
-        <Poster source={require('../assests/images/black.jpg')}>
+        <Poster
+          source={require('../assests/images/black.jpg')}
+          style={{marginTop: 40, marginBottom: 10}}>
           {/* <Gradient
             locations={[0, 0.2, 0.6, 0.93]}
             colors={[
@@ -121,18 +129,22 @@ const MovieByName = (props) => {
             <Hero />
           </Gradient> */}
         </Poster>
-        <Text style={styles.text}>2020</Text>
+        <Text style={styles.titleText}>Black Panther</Text>
+        <View style={{flexDirection: 'row'}}>
+          <Text style={styles.text}>2020</Text>
+          <Text style={styles.textTime}>2h31m</Text>
+        </View>
         <View style={{flexDirection: 'row'}}>
           <TouchableOpacity
             style={[styles.buttonContainer, styles.sendButton]}
             onPress={() => console.log('login')}>
+            <Text style={styles.buttonText}>PLAY</Text>
             <AntIcon
               name="caretright"
               color="#000000"
               size={15}
               style={{margin: 5}}
             />
-            <Text style={styles.buttonText}>PLAY</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.buttonContainer1, styles.sendButton]}
@@ -144,9 +156,48 @@ const MovieByName = (props) => {
               style={{margin: 5}}
             />
             <Text style={styles.buttonText} numberOfLines={1}>
-              MY LIST
+              ADD TO WHISHLIST
             </Text>
           </TouchableOpacity>
+        </View>
+
+        <View
+          style={{
+            //marginTop: height * 0.34002361275 * 2.5,
+            marginTop: 5,
+            marginBottom: 10,
+            flexDirection: 'row',
+            justifyContent: 'space-around',
+          }}>
+          <View style={styles.iconView}>
+            <AntIcon
+              name="playcircleo"
+              color="white"
+              size={40}
+              onPress={() => console.log('Play')}
+            />
+            <Text style={styles.iconText}>Trailer</Text>
+          </View>
+
+          <View style={styles.iconView}>
+            <MatIcon
+              name="share-circle"
+              color="white"
+              size={40}
+              onPress={() => console.log('Share')}
+            />
+            <Text style={styles.iconText}>Share</Text>
+          </View>
+
+          <View style={styles.iconView}>
+            <MatIcon
+              name="download-circle-outline"
+              color="white"
+              size={40}
+              onPress={() => console.log('Download')}
+            />
+            <Text style={styles.iconText}>Download</Text>
+          </View>
         </View>
         <Text
           style={{
@@ -166,8 +217,8 @@ const MovieByName = (props) => {
             fontFamily: 'Al Nile',
             fontSize: 18,
             marginLeft: 23,
-            marginTop: 5,
-            marginBottom: 5
+            marginTop: 20,
+            marginBottom: 5,
           }}>
           More Movies
         </Text>
@@ -182,6 +233,7 @@ const MovieByName = (props) => {
             justifyContent: 'center',
             alignItems: 'center',
             alignSelf: 'center',
+            marginTop: 5,
           }}>
           {/* <View style={styles.genreCard}>
                   <ImageBackground
@@ -214,9 +266,9 @@ const MovieByName = (props) => {
                     //width: width * 0.29866666666,
                     //height: height * 0.12068965517,
                     //margin: 5,
-                    borderRadius: 15,
-                    height: width * 0.29866666666,
-                    width: height * 0.12068965517,
+                    borderRadius: 10,
+                    width: width * 0.29866666666,
+                    height: height * 0.29866666666 * 0.6,
                   }}
                   resizeMode="cover"
                 />
@@ -261,11 +313,26 @@ const styles = StyleSheet.create({
     //backgroundColor: "orange"
     backgroundColor: '#0D1F33',
   },
+  titleText: {
+    fontFamily: 'Arial regular',
+    fontSize: 20,
+    color: '#FFFFFF',
+    marginLeft: 27,
+    margin: 5,
+    fontWeight: 'bold',
+  },
   text: {
-    fontFamily: 'HelveticaNeue Regular',
+    fontFamily: 'Arial regular',
     fontSize: 12,
     color: '#BEBABA',
     marginLeft: 27,
+    margin: 5,
+  },
+  textTime: {
+    fontFamily: 'Arial regular',
+    fontSize: 12,
+    color: '#BEBABA',
+    marginLeft: 10,
     margin: 5,
   },
   item1: {
@@ -281,12 +348,12 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   buttonContainer: {
-    height: height * 0.02355072463,
+    height: height * 0.02355072463 * 2,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 20,
-    width: width * 0.184,
+    width: width * 0.43866666666,
     borderRadius: 9,
     borderColor: '#0D1F33',
     borderWidth: 1,
@@ -296,19 +363,20 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
   },
   buttonContainer1: {
-    height: height * 0.02355072463,
+    height: height * 0.02355072463 * 2,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 20,
-    width: width * 0.24533333333,
+    width: width * 0.43866666666,
     borderRadius: 9,
     borderColor: '#0D1F33',
     borderWidth: 1,
     alignSelf: 'center',
     marginTop: 10,
-    marginLeft: 23,
+    //marginLeft: 23,
     backgroundColor: '#FFFFFF',
+    margin: 5,
   },
   sendButton: {
     backgroundColor: '#FFFFFF',
@@ -317,11 +385,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
   },
   buttonText: {
-    color: '#000000',
-    fontFamily: 'verdanab',
-    fontSize: 13,
+    color: '#040404',
+    fontFamily: 'arial-bold',
+    fontSize: 10,
     paddingVertical: 10,
     marginVertical: 10,
+    margin: 5,
   },
   card: {
     width: width * 0.88850666666,
@@ -346,17 +415,29 @@ const styles = StyleSheet.create({
     fontFamily: 'arial-bold',
   },
   RectangularCard: {
-    //width: width * 0.41066666666,
-    //height: (height * 5.81286549708) / 4 / 4,
+    //width: width * 0.29866666666,
+    //height: height * 0.29866666666 * 2,
     //height: (height * 0.41066666666) / 2,
     //width: (width * 5.81286549708) / 22,
     //borderWidth: 1,
     marginLeft: 11,
     borderRadius: 20,
-    alignItems: 'stretch',
+    //alignItems: 'stretch',
     justifyContent: 'center',
     alignSelf: 'center',
     marginTop: 5,
+    marginVertical: 5,
+  },
+  iconText: {
+    color: 'white',
+    fontFamily: 'Al Nile',
+    fontSize: 10,
+    margin: 5,
+  },
+  iconView: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    margin: 5,
   },
 });
 

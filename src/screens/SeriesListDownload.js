@@ -23,41 +23,70 @@ import Ant from 'react-native-vector-icons/AntDesign';
 
 const {height, width} = Dimensions.get('window');
 
-const Whishlist = (props) => {
+const Downloads = (props) => {
   const isFocused = useIsFocused();
+  const [isP, setP] = useState(false);
 
-  useEffect(() => {}, [props, isFocused]);
+  useEffect(() => {
+    console.log('SerieslistDownloads');
+  }, [props, isFocused]);
 
   const dataMovies = [
     {
       id: 1,
       imageUri:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-VwB1KWCwZsTkTCt-1AqLQulVrkjn9Jr96Q&usqp=CAU',
-      name: 'Mirzapur',
+        'https://occ-0-2042-2186.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABZrpubnU9GVj1_grodqj39XYsKL87ZB96Vkg2N8xqd-284hAHFZUIvqAcQyeqnrg37pFZpzlzMcTVfeR25ojeTPRnWoMQcmocJ0Qn-bXYW3y5tXo.jpg?r=fea',
+      name: 'Ep: 1 - Ashwathama ',
+      d: 0,
     },
     {
       id: 2,
       imageUri:
-        'https://blogtobollywood.com/wp-content/uploads/2021/01/Telugu-movie-Red.jpg',
-      name: 'Red',
+        'https://occ-0-2042-2186.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABcSuxXFfDHykG6Z5_6vgV-j7OgjLzfJR3eZjooc0bUXlO3YWe6qQaZXMMI0ANC0LcNpDs1vDeu7oAty4M50vBT-spdrTPECYeZ-nkOXy_P-kXYdv.jpg?r=495',
+      name: 'Ep: 2 - Halahala',
+      d: 1,
     },
     {
       id: 3,
       imageUri:
-        'https://i.pinimg.com/originals/e5/7b/5a/e57b5a031e365fb54fded45bbe8bdee0.jpg',
-      name: 'Breathe',
+        'https://occ-0-2042-2186.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABUd7-6Qz5k7hbyqERELaUSC6pbaLGuSWKDxcgAETm6TWE-Bp7seKSBHV3StzU6G60o4Zx5f19gM7-eYW--6Dy9YdPC3zIrZS217CeRfGRMXcffQl.jpg?r=4c5',
+      name: 'Ep: 3 - Atapi Vatapi',
+      d: 0,
     },
     {
       id: 4,
       imageUri:
-        'https://image.scoopwhoop.com/w360/s4.scoopwhoop.com/anj2/5dd6457650758d76b6503bb2/bd3f981a-79ea-4c43-a22b-5a73bd92b771.jpg.webp',
-      name: 'Sacred Games',
+        'https://occ-0-2042-2186.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABbLgc8oDdfl5aYg5U7smaS9yFbiE4jQyb17lQADsxICL0H6RgHGgpHVG7JWyuOz4JwUDqj9tonkuauZP_QJ2bc0fKpMH75gcQyLIEdRQ80GyHv4j.jpg?r=3fd',
+      name: 'Ep: 4 -Brahmahatya',
+      d: 2,
     },
     {
       id: 5,
       imageUri:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtc3n-wll3kCg_HrAWQl9FwVK9Y6UKsla7kg&usqp=CAU',
-      name: 'Money Heist',
+        'https://occ-0-2042-2186.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABeRI-aJfgCqEUbD3TqVJWf4WsSO2xxw0dPXxWizL9k0Wg6d5SdEq3W-lGGYu3eeSBIazzc3tOgy4D_4eBh_W3yGMY8EygRJhpEaDb19TWJZbgwPy.jpg?r=1c0',
+      name: 'Ep: 5 - Sarama',
+      d: 1,
+    },
+    {
+      id: 6,
+      imageUri:
+        'https://occ-0-2042-2186.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABSVrTxM3NHMfuSgAzAz9e0HfK-wOHm_768IprbZKJjmDVbos-gmyvo4LQSOpa2rRBS5dAJCUndZt25A7ss47MlyULb9aE4krr7azr2yXtMVn_U0C.jpg?r=918',
+      name: 'Ep: 6 - Pretakalpa',
+      d: 1,
+    },
+    {
+      id: 7,
+      imageUri:
+        'https://occ-0-2042-2186.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABQ2UC0MWRK64Wu2PwtSFrBYzvSCxK7x3k7aJkVSRTGxyukwLUyFRZdIvIQJAh2Aqmoi3oaoLm_qhZnlGeSm9RGI_3D8Fb18ZzOqlu_TkHrCWxhcd.jpg?r=e1e',
+      name: 'Ep: 7 - Rudra',
+      d: 1,
+    },
+    {
+      id: 8,
+      imageUri:
+        'https://occ-0-2042-2186.1.nflxso.net/dnm/api/v6/9pS1daC2n6UGc3dUogvWIPMR_OU/AAAABb03hJs_VFm-bW7P6ZYoxC5pJIMMjsUiFsSUnEoPnl_ogyk2vV70u7ab1N1o1OJTfc-yciW76LPt4SM9T_bY4pgxRyQoWNrlcN-9jdzYKw2r8IuA.jpg?r=438',
+      name: 'Ep: 8 - Yayati',
+      d: 1,
     },
   ];
 
@@ -78,7 +107,26 @@ const Whishlist = (props) => {
         />
         <Text style={styles.title}>{item.name}</Text>
 
-        <Ant name="download" size={22} color="#FFFFFF" />
+        {/* {item.d == '0' ? (
+          <Ant name="checkcircleo" size={22} color="#FFFFFF" />
+        ) : (
+          <Ant name="pausecircleo" size={22} color="#FFFFFF" />
+        )} */}
+
+        {item.d == '0' ? (
+          <Ant name="checkcircleo" size={22} color="#FFFFFF" />
+        ) : null}
+
+        {item.d == '1' ? (
+          <Ant name="checkcircleo" size={22} color="#FFFFFF" />
+        ) : null}
+
+        {item.d == '2' ? (
+          <Ant name="checkcircleo" size={22} color="#FFFFFF" />
+        ) : null}
+
+        {/* <Ant name="checkcircleo" size={22} color="#FFFFFF" /> */}
+        {/* <Ant name="pausecircleo" size={22} color="#FFFFFF" /> */}
       </TouchableOpacity>
     );
   };
@@ -93,7 +141,7 @@ const Whishlist = (props) => {
           fontSize: 18,
           marginTop: 42,
         }}>
-        Wishlist
+        Downloads
       </Text>
 
       <View style={{flex: 1}}>
@@ -161,4 +209,4 @@ const styles = StyleSheet.create({
     marginLeft: 7,
   },
 });
-export default Whishlist;
+export default Downloads;

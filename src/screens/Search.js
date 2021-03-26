@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
   },
   formContent: {
     flexDirection: 'row',
-    marginTop: 10,
+    marginTop: 20,
   },
   inputContainer: {
     borderBottomColor: '#F5FCFF',

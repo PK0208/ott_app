@@ -123,7 +123,13 @@ const ChangePassword = (props) => {
         <TouchableOpacity
           style={[styles.buttonContainer, styles.sendButton]}
           onPress={() => console.log('Update Change Password')}>
-          <Text style={{color: '#000000', fontFamily: 'arial-bold', margin: 5}}>
+          <Text
+            style={{
+              color: '#000000',
+              fontFamily: 'arial-bold',
+              margin: 5,
+              fontSize: 11,
+            }}>
             UPDATE
           </Text>
         </TouchableOpacity>
@@ -188,7 +194,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 20,
     width: width * 0.30058666666,
-    borderRadius: 5,
+    borderRadius: 10,
     borderColor: '#FFFFFF',
     borderWidth: 1,
     alignSelf: 'center',

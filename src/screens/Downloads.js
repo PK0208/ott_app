@@ -23,8 +23,9 @@ import Ant from 'react-native-vector-icons/AntDesign';
 
 const {height, width} = Dimensions.get('window');
 
-const Whishlist = (props) => {
+const Downloads = (props) => {
   const isFocused = useIsFocused();
+  const [isP, setP] = useState(false);
 
   useEffect(() => {}, [props, isFocused]);
 
@@ -34,30 +35,35 @@ const Whishlist = (props) => {
       imageUri:
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-VwB1KWCwZsTkTCt-1AqLQulVrkjn9Jr96Q&usqp=CAU',
       name: 'Mirzapur',
+      d: 0,
     },
     {
       id: 2,
       imageUri:
         'https://blogtobollywood.com/wp-content/uploads/2021/01/Telugu-movie-Red.jpg',
       name: 'Red',
+      d: 1,
     },
     {
       id: 3,
       imageUri:
         'https://i.pinimg.com/originals/e5/7b/5a/e57b5a031e365fb54fded45bbe8bdee0.jpg',
       name: 'Breathe',
+      d: 0,
     },
     {
       id: 4,
       imageUri:
         'https://image.scoopwhoop.com/w360/s4.scoopwhoop.com/anj2/5dd6457650758d76b6503bb2/bd3f981a-79ea-4c43-a22b-5a73bd92b771.jpg.webp',
       name: 'Sacred Games',
+      d: 2,
     },
     {
       id: 5,
       imageUri:
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtc3n-wll3kCg_HrAWQl9FwVK9Y6UKsla7kg&usqp=CAU',
       name: 'Money Heist',
+      d: 1,
     },
   ];
 
@@ -65,12 +71,13 @@ const Whishlist = (props) => {
     return (
       <TouchableOpacity
         style={[styles.card]}
-        onPress={() => {
+        /* onPress={() => {
           props.navigation.navigate('MovieByName', {
             name: item.name,
             image: item.imageUri,
           });
-        }}>
+        }} */
+      >
         <Image
           style={styles.cardImage}
           source={{uri: item.imageUri}}
@@ -78,7 +85,31 @@ const Whishlist = (props) => {
         />
         <Text style={styles.title}>{item.name}</Text>
 
-        <Ant name="download" size={22} color="#FFFFFF" />
+        {/* {item.d == '0' ? (
+          <Ant name="checkcircleo" size={22} color="#FFFFFF" />
+        ) : (
+          <Ant name="pausecircleo" size={22} color="#FFFFFF" />
+        )} */}
+
+        {item.d == '0' ? (
+          <Ant name="checkcircleo" size={22} color="#FFFFFF" />
+        ) : null}
+
+        {item.d == '1' ? (
+          <Ant name="pausecircleo" size={22} color="#FFFFFF" />
+        ) : null}
+
+        {item.d == '2' ? (
+          <Ant
+            name="right"
+            size={22}
+            color="#FFFFFF"
+            onPress={() => props.navigation.navigate('SeriesListDownload')}
+          />
+        ) : null}
+
+        {/* <Ant name="checkcircleo" size={22} color="#FFFFFF" /> */}
+        {/* <Ant name="pausecircleo" size={22} color="#FFFFFF" /> */}
       </TouchableOpacity>
     );
   };
@@ -93,7 +124,7 @@ const Whishlist = (props) => {
           fontSize: 18,
           marginTop: 42,
         }}>
-        Wishlist
+        Downloads
       </Text>
 
       <View style={{flex: 1}}>
@@ -161,4 +192,4 @@ const styles = StyleSheet.create({
     marginLeft: 7,
   },
 });
-export default Whishlist;
+export default Downloads;

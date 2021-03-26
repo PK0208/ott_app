@@ -18,10 +18,7 @@ import Appbar from '../components/Appbar';
 import {useIsFocused} from '@react-navigation/native';
 import axios from 'axios';
 import {Header, Left, Body, Right, Button, Icon, Title} from 'native-base';
-
-/* import StickyHeaderFooterScrollView from 'react-native-sticky-header-footer-scroll-view'; */
-import AntIcon from 'react-native-vector-icons/AntDesign';
-/* import FloatLabelTextInput from 'react-native-floating-label-text-input'; */
+import {CheckBox} from 'react-native';
 
 import styled from 'styled-components/native';
 
@@ -41,6 +38,8 @@ const SignUp = (props) => {
   const isFocused = useIsFocused();
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [toggleCheckBox, setToggleCheckBox] = useState(false);
+
   //const [arr, setArr] =  React.useState([]);
 
   /*  const add = () =>{
@@ -71,7 +70,7 @@ const SignUp = (props) => {
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
           <TextInput
             style={styles.inputStyle}
-            placeholder="Email"
+            placeholder="Name"
             //value={this.state.displayName}
             onChangeText={(email) => setEmail(email)}
             placeholderTextColor="#FFFFFFC9"
@@ -97,6 +96,12 @@ const SignUp = (props) => {
           style={{justifyContent: 'flex-end', marginLeft: '65%', margin: 5}}>
           <Text style={{color: '#FFFFFFE5'}}>Forgot password</Text>
         </View> */}
+
+        {/* <CheckBox
+          disabled={false}
+          value={toggleCheckBox}
+          onValueChange={(newValue) => setToggleCheckBox(newValue)}
+        /> */}
         <TouchableHighlight
           style={[styles.buttonContainer, styles.sendButton]}
           onPress={() => props.navigation.navigate('Home')}>
@@ -113,7 +118,7 @@ const SignUp = (props) => {
             style={{
               flex: 0.25,
               height: 1,
-              backgroundColor: '#707070',
+              backgroundColor: '#FFFFFFC9',
               width: (width * 0.13661333333) / 64,
             }}
           />
@@ -126,24 +131,32 @@ const SignUp = (props) => {
             style={{
               flex: 0.25,
               height: 1,
-              backgroundColor: '#707070',
+              backgroundColor: '#FFFFFFC9',
               width: width * 0.13661333333,
               width: (width * 0.13661333333) / 64,
             }}
           />
         </View>
         <View style={{marginTop: 29}}>
-          <TouchableHighlight
+          <TouchableOpacity
             style={[styles.buttonContainerSocialG, styles.sendButtonSocialG]}
             onPress={() => console.log('CONNECT WITH GOOGLE')}>
+            <Image
+              style={styles.socialImg}
+              source={require('../assests/images/google_icon.png')}
+            />
             <Text style={styles.buttonTextG}>CONNECT WITH GOOGLE</Text>
-          </TouchableHighlight>
+          </TouchableOpacity>
 
-          <TouchableHighlight
+          <TouchableOpacity
             style={[styles.buttonContainerSocial, styles.sendButtonSocialF]}
-            onPress={() => console.log('CONNECT WITH FACEBOOK')}>
+            onPress={() => console.log('CONNECT WITH GOOGLE')}>
+            <Image
+              style={styles.socialImg}
+              source={require('../assests/images/fb_icon.png')}
+            />
             <Text style={styles.buttonTextF}>CONNECT WITH FACEBOOK</Text>
-          </TouchableHighlight>
+          </TouchableOpacity>
         </View>
         <View style={styles.bottomView}>
           <TouchableOpacity onPress={() => props.navigation.navigate('Login')}>
@@ -160,13 +173,14 @@ const styles = StyleSheet.create({
     width: width * 0.808,
     height: height * 0.19334975369,
     //borderRadius: 27,
+    //marginBottom: 60,
   },
   inputStyle: {
     width: '80%',
     //marginBottom: 15,
     //paddingBottom: 15,
     alignSelf: 'center',
-    borderColor: '#403D3DC9',
+    borderColor: '#FFFFFFC9',
     borderBottomWidth: 1,
   },
   buttonContainer: {
@@ -226,10 +240,12 @@ const styles = StyleSheet.create({
   buttonTextG: {
     color: '#000000',
     fontFamily: 'arial-bold',
+    fontSize: 12,
   },
   buttonTextF: {
     color: 'white',
     fontFamily: 'arial-bold',
+    fontSize: 12,
   },
   button: {
     padding: 10,
@@ -259,6 +275,13 @@ const styles = StyleSheet.create({
   textStyle: {
     color: '#FFFFFFE5',
     fontSize: 14,
+    fontFamily: 'arial-bold',
+  },
+  socialImg: {
+    width: width * 0.032 * 1.25,
+    height: width * 0.032 * 1.25,
+    marginRight: 20,
+    marginLeft: -30,
   },
 });
 export default SignUp;

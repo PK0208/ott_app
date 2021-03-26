@@ -16,6 +16,10 @@ import DramaMovies from '../screens/MoviesByGeneres/DramaMovies';
 import HorrorMovies from '../screens/MoviesByGeneres/HorrorMovies';
 import RomanceMovies from '../screens/MoviesByGeneres/RomanceMovies';
 
+import Downloads from '../screens/Downloads';
+import SeriesListDownload from '../screens/SeriesListDownload';
+import EditProfile from '../screens/EditProfile';
+
 import Teaser from '../screens/Teaser';
 
 import Login from '../screens/Login';
@@ -83,6 +87,18 @@ const SearchStacKNavigator = ({navigation, route}) => {
   );
 };
 
+const DownloadStacKNavigator = ({navigation, route}) => {
+  navigation.setOptions({
+    tabBarVisible: route.state ? (route.state.index > 0 ? true : true) : null,
+  });
+  return (
+    <Stack.Navigator screenOptions={screenOptionStyle}>
+      <Stack.Screen name="Downloads" component={Downloads} />
+      <Stack.Screen name="SeriesListDownload" component={SeriesListDownload} />
+    </Stack.Navigator>
+  );
+};
+
 const WishListStacKNavigator = ({navigation, route}) => {
   navigation.setOptions({
     tabBarVisible: route.state ? (route.state.index > 0 ? true : true) : null,
@@ -103,6 +119,7 @@ const ProfileStacKNavigator = ({navigation, route}) => {
     <Stack.Navigator screenOptions={screenOptionStyle}>
       <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="Teaser" component={Teaser} />
+      <Stack.Screen name="EditProfile" component={EditProfile} />
     </Stack.Navigator>
   );
 };
@@ -111,6 +128,7 @@ export {
   AuStackNavigator,
   MainStackNavigator,
   SearchStacKNavigator,
+  DownloadStacKNavigator,
   WishListStacKNavigator,
   ProfileStacKNavigator,
 };
