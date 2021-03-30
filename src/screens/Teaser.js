@@ -39,10 +39,24 @@ const {height, width} = Dimensions.get('window');
 
 const Teaser = (props) => {
   const isFocused = useIsFocused();
+  const [msg, setMsg] = useState(true);
 
   useEffect(() => {
-    console.log('User effect props MoviesByName', props.route.params);
+    console.log('User effect Teaser component');
+    const timer = setTimeout(() => {
+      console.log('This will run after 1 second!');
+      setMsg(false);
+    }, 2000);
+
+    timer1();
+    return () => clearTimeout(timer);
   }, [props, isFocused]);
+
+  const timer1 = () =>
+    setTimeout(() => {
+      console.log('This will run after 5 second!');
+      setMsg(true);
+    }, 5000);
 
   return (
     <>
@@ -53,16 +67,19 @@ const Teaser = (props) => {
       />
       <Container>
         <Poster source={require('../assests/images/black.jpg')}>
-          <View
+          {/* <Text
+            style={{
+              color: 'white',
+              fontSize: 20,
+            }}>
+            {msg}
+          </Text> */}
+          {/* <View
             style={{
               marginTop: height * 0.34002361275 * 2.5,
               flexDirection: 'row',
               justifyContent: 'space-around',
             }}>
-            {/* <LinearGradient
-              colors={['#f00', '#0f0']}
-              start={{x: 0, y: 0}}
-              end={{x: 1, y: 0}}> */}
             <AntIcon
               name="pluscircleo"
               color="white"
@@ -81,7 +98,48 @@ const Teaser = (props) => {
               size={40}
               onPress={() => console.log('Share')}
             />
-            {/* </LinearGradient> */}
+          </View> */}
+
+          {/* <TouchableOpacity style={[styles.buttonContainer, styles.sendButton]}>
+            <Text style={styles.buttonText}>ADD TO WHISHLIST</Text>
+          </TouchableOpacity> */}
+
+          {msg == true ? (
+            <TouchableOpacity
+              style={[styles.buttonContainerH, styles.sendButtonH]}>
+              <Text style={styles.buttonTextH}>ADD TO WHISHLIST</Text>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
+              style={[styles.buttonContainer, styles.sendButton]}>
+              <Text style={styles.buttonText}>ADD TO WHISHLIST</Text>
+            </TouchableOpacity>
+          )}
+
+          <View
+            style={{
+              marginTop: 82,
+              flexDirection: 'row',
+              justifyContent: 'space-around',
+            }}>
+            <AntIcon
+              name="pluscircleo"
+              color="white"
+              size={40}
+              onPress={() => console.log('Plus')}
+            />
+            <AntIcon
+              name="playcircleo"
+              color="white"
+              size={40}
+              onPress={() => console.log('Play')}
+            />
+            <AntIcon
+              name="sharealt"
+              color="white"
+              size={40}
+              onPress={() => console.log('Share')}
+            />
           </View>
         </Poster>
       </Container>
@@ -120,19 +178,44 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 20,
-    width: 100,
-    borderRadius: 5,
+    width: width * 0.512,
     borderColor: '#FFFFFF',
     borderWidth: 1,
     alignSelf: 'center',
-    shadowColor: '#00000041',
-    shadowOffset: {width: 1, height: 3},
-    shadowOpacity: 1,
-    elevation: 6,
+    //shadowColor: '#00000041',
+    //shadowOffset: {width: 1, height: 3},
+    //shadowOpacity: 1,
+    //elevation: 6,
     marginTop: height * 0.34002361275 * 2.2,
   },
   sendButton: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#00000',
+  },
+  buttonContainerH: {
+    height: 30,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20,
+    width: width * 0.512,
+    //borderColor: '#FFFFFF',
+    //borderWidth: 1,
+    alignSelf: 'center',
+    //shadowColor: '#00000041',
+    //shadowOffset: {width: 1, height: 3},
+    //shadowOpacity: 1,
+    //elevation: 6,
+    marginTop: height * 0.34002361275 * 2.2,
+  },
+  sendButtonH: {
+    //backgroundColor: '#00000',
+  },
+  buttonTextH: {
+    //color: '#FFFFFF',
+    fontFamily: 'verdanab',
+    fontSize: 1,
+    paddingVertical: 10,
+    marginVertical: 10,
   },
   buttonContainer1: {
     height: height * 0.02355072463,
@@ -150,13 +233,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
   },
   sendButton: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#000000',
     paddingVertical: 10,
     marginVertical: 10,
     paddingHorizontal: 5,
   },
   buttonText: {
-    color: '#000000',
+    color: '#FFFFFF',
     fontFamily: 'verdanab',
     fontSize: 13,
     paddingVertical: 10,

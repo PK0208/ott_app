@@ -339,8 +339,8 @@ const Home = (props) => {
         backgroundColor="transparent"
         barStyle="light-content"
       />
+      <Header />
       <Container>
-        {/* <Header /> */}
         <Poster source={require('../assests/images/black.jpg')}>
           <View>
             <TouchableHighlight

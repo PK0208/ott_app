@@ -4,29 +4,37 @@ import {View, Text, Dimensions, TouchableOpacity} from 'react-native';
 import styled from 'styled-components/native';
 
 import logo from '../assests/images/logo_ott.png';
+import Ionicon from 'react-native-vector-icons/Ionicons';
 
 const Container = styled.View`
   position: absolute;
-  top: 0;
+  top: 10;
   width: 100%;
   height: 75px;
   z-index: 1;
   flex-flow: row;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  flex-direction: row;
 `;
 
 const Icon = styled.Image.attrs({
   resizeMode: 'contain',
 })`
-  height: 30px;
-  width: 30px;
+  height: 40px;
+  width: 50px;
 `;
 
 const Header = (props) => {
   return (
     <Container>
       <Icon source={logo} />
+      <Ionicon
+        name="play-circle-outline"
+        color="white"
+        size={30}
+        onPress={() => console.log('Play Home Screen')}
+      />
     </Container>
   );
 };
