@@ -102,6 +102,8 @@ const Profile = (props) => {
               flexDirection: 'column',
               borderRadius: 10,
               backgroundColor: '#EB6F80',
+              justifyContent: 'center',
+              alignItems: 'center',
             }}>
             <Text style={{color: 'white', fontSize: 23}}>₹99</Text>
             <View
@@ -113,7 +115,7 @@ const Profile = (props) => {
             <Text style={{color: 'white', marginTop: 10, fontSize: 11}}>
               BASIC
             </Text>
-            <View style={{marginLeft: 11, flexDirection: 'column'}}>
+            <View>
               <Text style={{marginTop: 7, color: 'white', fontSize: 6}}>
                 X Time limite
               </Text>
