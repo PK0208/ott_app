@@ -20,6 +20,7 @@ import {Card, CardItem, Body} from 'native-base';
 import StickyHeaderFooterScrollView from 'react-native-sticky-header-footer-scroll-view';
 import Icon from 'react-native-vector-icons/AntDesign';
 import ImageSliderComponent from '../components/ImageSlider';
+import LinearGradient from 'react-native-linear-gradient';
 
 const {height, width} = Dimensions.get('window');
 
@@ -85,6 +86,149 @@ const Profile = (props) => {
             marginLeft: 30,
             marginRight: 30,
           }}></View>
+
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            marginTop: 30.5,
+          }}>
+          <View></View>
+
+          <LinearGradient
+            colors={['#8FE384', '#487242']}
+            style={{
+              width: width * 0.28533333333,
+              flexDirection: 'column',
+              borderRadius: 10,
+              backgroundColor: '#EB6F80',
+            }}>
+            <Text style={{color: 'white', fontSize: 23}}>₹99</Text>
+            <View
+              style={{
+                borderWidth: 1,
+                borderColor: '#FFFFFF',
+                width: '80%',
+              }}></View>
+            <Text style={{color: 'white', marginTop: 10, fontSize: 11}}>
+              BASIC
+            </Text>
+            <View style={{marginLeft: 11, flexDirection: 'column'}}>
+              <Text style={{marginTop: 7, color: 'white', fontSize: 6}}>
+                X Time limite
+              </Text>
+              <Text style={{marginTop: 4, color: 'white', fontSize: 6}}>
+                X Number of screen
+              </Text>
+              <Text style={{marginTop: 4, color: 'white', fontSize: 6}}>
+                X Number of ………..
+              </Text>
+            </View>
+
+            <TouchableOpacity
+              style={[styles.buttonContainerBasic, styles.sendButtonBasic]}
+              onPress={() => console.log('Buy')}>
+              <Text
+                style={{
+                  color: '#619A59',
+                  fontFamily: 'arial-bold',
+                  fontSize: 10,
+                }}>
+                BUY
+              </Text>
+            </TouchableOpacity>
+          </LinearGradient>
+
+          <LinearGradient
+            colors={['#9B38D2', '#39154D']}
+            style={{
+              width: width * 0.28533333333,
+              flexDirection: 'column',
+              borderRadius: 10,
+              backgroundColor: '#EB6F80',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Text style={{color: 'white', fontSize: 23}}>₹199</Text>
+            <View
+              style={{
+                borderWidth: 1,
+                borderColor: '#FFFFFF',
+                width: '80%',
+              }}></View>
+            <Text style={{marginTop: 10, color: 'white', fontSize: 11}}>
+              PREMIUM
+            </Text>
+            <View>
+              <Text style={{marginTop: 7, color: 'white', fontSize: 6}}>
+                X Time limite
+              </Text>
+              <Text style={{marginTop: 4, color: 'white', fontSize: 6}}>
+                X Number of screen
+              </Text>
+              <Text style={{marginTop: 4, color: 'white', fontSize: 6}}>
+                X Number of ………..
+              </Text>
+            </View>
+            <TouchableOpacity
+              style={[styles.buttonContainerBasic, styles.sendButtonBasic]}
+              onPress={() => console.log('Buy')}>
+              <Text
+                style={{
+                  color: '#619A59',
+                  fontFamily: 'arial-bold',
+                  fontSize: 10,
+                }}>
+                BUY
+              </Text>
+            </TouchableOpacity>
+          </LinearGradient>
+
+          <LinearGradient
+            colors={['#EB6F80', '#763840']}
+            style={{
+              width: width * 0.28533333333,
+              flexDirection: 'column',
+              borderRadius: 10,
+              backgroundColor: '#EB6F80',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Text style={{color: 'white', fontSize: 23}}>₹299</Text>
+            <View
+              style={{
+                borderWidth: 1,
+                borderColor: '#FFFFFF',
+                width: '80%',
+              }}></View>
+            <Text style={{marginTop: 10, color: 'white', fontSize: 11}}>
+              ULTMATE
+            </Text>
+            <View>
+              <Text style={{marginTop: 7, color: 'white', fontSize: 6}}>
+                X Time limite
+              </Text>
+              <Text style={{marginTop: 4, color: 'white', fontSize: 6}}>
+                X Number of screen
+              </Text>
+              <Text style={{marginTop: 4, color: 'white', fontSize: 6}}>
+                X Number of ………..
+              </Text>
+            </View>
+            <TouchableOpacity
+              style={[styles.buttonContainerBasic, styles.sendButtonBasic]}
+              onPress={() => console.log('Buy')}>
+              <Text
+                style={{
+                  color: '#619A59',
+                  fontFamily: 'arial-bold',
+                  fontSize: 10,
+                }}>
+                BUY
+              </Text>
+            </TouchableOpacity>
+          </LinearGradient>
+        </View>
       </View>
 
       <View
@@ -201,6 +345,28 @@ const styles = StyleSheet.create({
   },
   sendButtonS: {
     backgroundColor: '#040404',
+  },
+
+  buttonContainerBasic: {
+    height: 30,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 10,
+    width: width * 0.192,
+    borderRadius: 15,
+    borderColor: '#FFFFFF',
+    borderWidth: 1,
+    alignSelf: 'center',
+    shadowColor: '#00000041',
+    shadowOffset: {width: 1, height: 3},
+    shadowOpacity: 1,
+    elevation: 6,
+    marginTop: 13,
+    backgroundColor: '#FFFFFF',
+  },
+  sendButtonBasic: {
+    backgroundColor: '#FFFFFF',
   },
 });
 export default Profile;
